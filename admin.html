@@ -84,6 +84,10 @@
         </div>
     </div>
 
+    <!--无限极左侧菜单-->
+    <div class="layui-side layui-bg-black layuimini-menu-left">
+    </div>
+
     <!--初始化加载层-->
     <div class="layuimini-loader">
         <div class="layuimini-loader-inner"></div>
@@ -95,14 +99,13 @@
     <!-- 移动导航 -->
     <div class="layuimini-site-mobile"><i class="layui-icon"></i></div>
 
-    <div class="layui-body" style="left: 0!important;">
+    <div class="layui-body">
 
         <div class="layui-card layuimini-page-header layui-hide">
             <div class="layui-breadcrumb layuimini-page-title">
                 <a lay-href="" href="/">主页</a><span lay-separator="">/</span>
-                <a><cite>图片</cite></a><span lay-separator="">/</span>
-                <a><cite>视频</cite></a>
-                <a><cite>音频</cite></a>
+                <a><cite>常规管理</cite></a><span lay-separator="">/</span>
+                <a><cite>系统设置</cite></a>
             </div>
         </div>
 
@@ -122,7 +125,7 @@
             miniTongji = layui.miniTongji;
 
         var options = {
-            iniUrl: "api/indexInit.json",    // 初始化接口
+            iniUrl: "api/init.json",    // 初始化接口
             clearUrl: "api/clear.json", // 缓存清理接口
             renderPageVersion: true,    // 初始化页面是否加版本号
             bgColorDefault: false,      // 主题默认配置
@@ -145,7 +148,7 @@
 
         $('.login-out').on("click", function () {
             layer.msg('退出登录成功', function () {
-                window.location = 'page/login-3.html';
+                window.location = 'page/admin/login.html';
             });
         });
     });

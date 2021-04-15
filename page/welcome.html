@@ -1,8 +1,9 @@
+<!-- bootstrap引入 -->
+<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- 样式添加 -->
 <style>
-    .welcome {
-
-    }
-
     .welcome .search-box {
         width: 80vw;
         height: 20vh;
@@ -11,21 +12,25 @@
         justify-content: center;
         margin: 0 auto;
     }
-
-    .welcome .slider {
-        display: flex;
-        width: 100vw;
-        max-height: 40vh;
-        align-items: center;
-        justify-content: center;
+    
+    .box:hover {
+        box-shadow: 0 8px 8px rgba(10, 16, 20, .24), 0 0 8px rgba(10, 16, 20, .12);
+        text-decoration: none;
+        cursor: pointer;
+        border: 0;
+        transform: translateY(-5px);
     }
-
-    .welcome .slider img {
-        width: 100vw;
-        max-height: 40vh;
+    
+    .text_hidden {
+        height: 38px;
+        overflow: hidden;
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-align: center;
     }
 </style>
-
 <div class="welcome">
     <!--    搜索框-->
     <form class="layui-form search-box" action="">
@@ -34,43 +39,140 @@
             <option value="1">时间</option>
             <option value="2">主题</option>
         </select>
-        <input type="text" placeholder="请填写搜索关键字" class="layui-input" required/>
+        <input type="text" placeholder="请填写搜索关键字" class="layui-input" />
         <button type="button" class="layui-btn layui-btn-primary">搜索</button>
     </form>
-    <!--    轮播图-->
-    <div class="slider">
-        <img src="http://www.henu.edu.cn/images/ndm1900.jpg">
+    <!--    轮播图start-->
+    <div id="myCarousel" class="carousel slide">
+        <!-- 轮播（Carousel）指标 -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+        <!-- 轮播（Carousel）项目 -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="../images/ndm1900.jpg" alt="First slide">
+                <div class="carousel-caption"></div>
+            </div>
+            <div class="item">
+                <img src="../images/415.jpg" alt="Second slide">
+                <div class="carousel-caption"></div>
+            </div>
+            <div class="item">
+                <img src="../images/yxmk1900.jpg" alt="Third slide">
+                <div class="carousel-caption"></div>
+            </div>
+            <div class="item">
+                <img src="../images/100.jpg" alt="Fourth slide">
+                <div class="carousel-caption"></div>
+            </div>
+        </div>
+        <!-- 轮播（Carousel）导航 -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-    <!--    推荐-->
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-xs4">
-            <div class="layui-card">
-                <div class="panel layui-bg-number">
-                    <div class="panel-body">
-                        <div class="panel-title">
-                            <span class="label pull-right layui-bg-blue">热门</span>
-                            <h5>这里是一个首页推荐相册</h5>
-                        </div>
-                        <div>
-                            <img src="http://sxgl.henu.edu.cn//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg"/>
-                        </div>
-                        <div class="panel-content">
-                            <small>相册说明</small>
-                        </div>
-                    </div>
-                </div>
+    <!--    轮播图end-->
+    <!-- 相册推荐 start-->
+    <!-- 相册第一排 -->
+    <div class="container " style="margin-top: 20px; background-color: #fff; ">
+        <div class="row ">
+            <div class=" col-md-3 box col-xs-6 ">
+                <img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg " alt=" " class="img-responsive center-block">
+                <h4 class="text-center "><strong>河大LOGO</strong> </h4>
+                <p class="text_hidden">人海加油</p>
+            </div>
+            <div class=" col-md-3 box col-xs-6 ">
+                <img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8814%E6%97%A5__44add6fd8de55fb3a3b53086bb61f9a7e5bb3b24%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%8720200914083807.jpg" alt=" " class="img-responsive center-block">
+                <h4 class="text-center "> <strong>新生报到</strong> </h4>
+                <p class="text_hidden ">人海加油</p>
+            </div>
+            <div class=" col-md-3 box col-xs-6 ">
+                <img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8810%E6%97%A5__474ddabfcd2b49c754e689ee0519a922428a3475%2FF2A1B8CAD5F51BDF42B818771EF4B030ECD185C9.jpg" alt=" " class="img-responsive center-block ">
+                <h4 class="text-center "> <strong>考察调研</strong> </h4>
+                <p class="text_hidden ">民进中央副主席、秘书长高友东来我校考察调研</p>
+            </div>
+            <div class=" col-md-3 box col-xs-6 ">
+                <img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8810%E6%97%A5__3c77319ad6600f7b4c126860d558eaf677fbf906%2FAD1799030BF235172F527C390D2D4231C9319022.jpg" alt=" " class="img-responsive center-block ">
+                <h4 class="text-center "> <strong>科研平台</strong> </h4>
+                <p class="text_hidden ">人海加油</p>
             </div>
         </div>
     </div>
+    <!-- 相册第二排 -->
+    <div class="container " style="margin-top: 20px; background-color: #fff; ">
+        <div class="row ">
+            <div class=" col-md-3 box col-xs-6 ">
+                <img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__fa7d181dfcc86ab57847fb499a2b164881ccc1b3%2Fu4416128501633144491fm173app49fJPEG.jpg" alt=" " class="img-responsive center-block ">
+                <h4 class="text-center "> <strong>河大校园</strong> </h4>
+                <p class="text_hidden ">人海加油</p>
+            </div>
+            <div class=" col-md-3 box col-xs-6">
+                <img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__3248d701f4548e917c35bad7aa94f8b8535ea2d3%2F1588109358729378.jpg" alt=" " class="img-responsive center-block ">
+                <h4 class="text-center "> <strong>南大门</strong> </h4>
+                <p class="text_hidden ">人海加油</p>
+            </div>
+            <div class=" col-md-3 box col-xs-6">
+                <img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__06f7dcf5ab127dd43c9841175c0ecc04dc7cb862%2Ftimg2.jpg " alt=" " class="img-responsive center-block ">
+                <h4 class="text-center "> <strong>大礼堂</strong> </h4>
+                <p class="text_hidden ">人海加油</p>
+            </div>
+            <div class=" col-md-3 box col-xs-6 ">
+                <img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg " alt=" " class="img-responsive center-block">
+                <h4 class="text-center "><strong>河大LOGO</strong> </h4>
+                <p class="text_hidden">人海加油</p>
+            </div>
+        </div>
+    </div>
+    <!-- 相册推荐end -->
+    <!-- 友情链接跳转star -->
+    <div class="container " style="margin-top: 20px; ">
+        <div class="row ">
+            <h3 class="text-center ">友情链接</h3>
+            <div class=" col-md-6 " style="margin-top: 20px; ">
+                <ul class="list-group ">
+                    <a href="# " class="list-group-item active ">
+                        学校概况
+                    </a>
+                    <a href="# " class="list-group-item ">院系部门</a>
+                    <a href="# " class="list-group-item ">档案馆</a>
+                    <a href="# " class="list-group-item ">教务系统</a>
+                </ul>
+            </div>
+            <div class=" col-md-6 " style="margin-top: 20px; ">
+                <ul class="list-group ">
+                    <a href="# " class="list-group-item active ">
+                        科学研究
+                    </a>
+                    <a href="# " class="list-group-item ">新闻资讯</a>
+                    <a href="# " class="list-group-item ">图书馆</a>
+                    <a href="# " class="list-group-item ">招生就业</a>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 友情链接跳转end -->
+    <!-- 版权声明 start-->
+    <div class=" panel-default " style="margin-top: 20px;height: 30px;; background-color: #2d8cf0; ">
+        <h4 style="text-align: center ;line-height: 30px; ">Copyright © 2021河南大学 版权所有</h4>
+    </div>
+    <!-- 版权声明 end -->
 </div>
-
-
 <script>
-    layui.use(['form', 'layedit', 'laydate'], function () {
-        var form = layui.form
-            , layer = layui.layer
-            , layedit = layui.layedit
-            , laydate = layui.laydate;
+    layui.use(['form', 'layedit', 'laydate'], function() {
+        var form = layui.form,
+            layer = layui.layer,
+            layedit = layui.layedit,
+            laydate = layui.laydate;
 
         /**
          * 初始化表单，要加上，不然刷新部分组件可能会不加载
@@ -90,22 +192,21 @@
 
         //自定义验证规则
         form.verify({
-            title: function (value) {
+            title: function(value) {
                 if (value.length < 5) {
                     return '标题至少得5个字符啊';
                 }
-            }
-            , pass: [
-                /^[\S]{6,12}$/
-                , '密码必须6到12位，且不能出现空格'
-            ]
-            , content: function (value) {
+            },
+            pass: [
+                /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'
+            ],
+            content: function(value) {
                 layedit.sync(editIndex);
             }
         });
 
         //监听指定开关
-        form.on('switch(switchTest)', function (data) {
+        form.on('switch(switchTest)', function(data) {
             layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
                 offset: '6px'
             });
@@ -113,7 +214,7 @@
         });
 
         //监听提交
-        form.on('submit(demo1)', function (data) {
+        form.on('submit(demo1)', function(data) {
             layer.alert(JSON.stringify(data.field), {
                 title: '最终的提交信息'
             })

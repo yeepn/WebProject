@@ -16,8 +16,8 @@
       "target": "_self",
       "child": [
         {
-          "title": "主页",
-          "href": "page/welcome.html",
+          "title": "个人中心",
+          "href": "page/admin/welcome.html",
           "icon": "fa fa-tachometer",
           "target": "_self"
         },
@@ -32,6 +32,26 @@
           "href": "page/setting.html",
           "icon": "fa fa-gears",
           "target": "_self"
+        },
+        {
+          "title": "上传管理",
+          "href": "",
+          "icon": "fa fa-calendar",
+          "target": "_self",
+          "child": [
+            {
+              "title": "上传集体相册",
+              "href": "page/admin/upload.html",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            },
+            {
+              "title": "设置上传参数",
+              "href": "page/admin/upload-setting.html",
+              "icon": "fa fa-navicon",
+              "target": "_self"
+            }
+          ]
         },
         {
           "title": "表格示例",

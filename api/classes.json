@@ -1,0 +1,17 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 3,
+  "data": [
+    {
+      "id": 10000,
+      "classname": "19-3 数据科学与大数据技术",
+      "people": "86",
+      "college": "计算机与信息工程学院",
+      "grade": "19",
+      "experience": 255,
+      "albums": 24,
+      "views": 870
+    }
+  ]
+}

@@ -71,6 +71,7 @@
                 <div class="layui-input-inline" style="width: 4rem">
                     <input  type="number" lay-verify="number-of-people" autocomplete="off" placeholder="人数" class="layui-input number-of-people">
                 </div>
+
                 <button class="layui-btn number-of-people-btn" type="button">生成姓名格</button>
             </div>
 
@@ -146,6 +147,7 @@
             var i= event.data.index;
             console.log('click'+i)
             var input=jq1111(numberBtn[i]).prev().children();
+            console.log(input)
             var numberOfNameInput=jq1111(numberBtn[i]).parent().children().length;
             var inputNumber=parseInt(input.val())
             if(numberOfNameInput>inputNumber+3) {
@@ -156,6 +158,8 @@
                 numberOfNameInput=jq1111(numberBtn[i]).parent().children().length;
             }
             else {
+                console.log(inputNumber);
+                console.log(numberOfNameInput);
                 console.log(inputNumber+3-numberOfNameInput)
                 for (j=0;j<(inputNumber+3-numberOfNameInput);j++){
                     var itemBodyEq=jq1111(numberBtn[i]).parent()
@@ -166,7 +170,11 @@
         }
         // 生成行
         jq1111(".number-of-people-btn2").click(function (){
-            jq1111(".number-of-people-body").after('<div class="layui-form-item number-of-people-body"><label class="layui-form-label">第2排：</label><div class="layui-input-inline" style="width: 4rem"><input  type="number" lay-verify="number-of-people" autocomplete="off" placeholder="人数" class="layui-input number-of-people"></div><button class="layui-btn number-of-people-btn" type="button">生成姓名格</button></div>')
+            jq1111(".number-of-people-body").eq(0).after('<div class="layui-form-item number-of-people-body"><label class="layui-form-label">第2排：</label><div class="layui-input-inline" style="width: 4rem"><input  type="number" lay-verify="number-of-people" autocomplete="off" placeholder="人数" class="layui-input number-of-people"></div><button class="layui-btn number-of-people-btn" type="button">生成姓名格</button></div>')
+            var numberBtn = jq1111(".number-of-people-btn");
+            for (i=0; i<numberBtn.length; i++){
+                jq1111(numberBtn[i]).bind("click", {index: i}, clickHandler)
+            }
         })
 
     });

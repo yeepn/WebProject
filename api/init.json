@@ -54,6 +54,26 @@
           ]
         },
         {
+          "title": "账户管理",
+          "href": "",
+          "icon": "fa fa-calendar",
+          "target": "_self",
+          "child": [
+            {
+              "title": "辅导员账户管理",
+              "href": "page/admin/manage-instructor-account.html",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            },
+            {
+              "title": "学生账户管理",
+              "href": "page/admin/404.html",
+              "icon": "fa fa-navicon",
+              "target": "_self"
+            }
+          ]
+        },
+        {
           "title": "表格示例",
           "href": "page/table.html",
           "icon": "fa fa-file-text",

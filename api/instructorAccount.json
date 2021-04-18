@@ -1,0 +1,43 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 3,
+  "data": [
+    {
+      "id": 10000,
+      "username": "孙洁",
+      "sex": "女",
+      "college": "计算机与信息工程学院",
+      "grade": "19-3 大数据",
+      "experience": 255,
+      "albums": 24,
+      "views": 82830700,
+      "classify": "辅导员",
+      "score": 57
+    },
+    {
+      "id": 10001,
+      "username": "user-1",
+      "sex": "男",
+      "college": "文学院",
+      "grade": "20",
+      "experience": 884,
+      "albums": 58,
+      "views": 64928690,
+      "classify": "词人",
+      "score": 27
+    },
+    {
+      "id": 10002,
+      "username": "user-2",
+      "sex": "女",
+      "college": "原子弹制造于维修",
+      "grade": "17",
+      "experience": 650,
+      "albums": 77,
+      "views": 6298078,
+      "classify": "酱油",
+      "score": 31
+    }
+  ]
+}

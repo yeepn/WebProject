@@ -1,3 +1,368 @@
 <html lang="en">
+<link rel="icon" href="../images/favicon.ico">
+<link rel="stylesheet" href="../lib/layui-v2.5.5/css/layui.css" media="all">
+<link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+<link rel="stylesheet" href="../css/layuimini.css?v=2.0.1" media="all">
+<link rel="stylesheet" href="../css/themes/default.css" media="all">
+<link rel="stylesheet" href="../css/public.css" media="all">
+<script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../js/lay-config.js?v=2.0.0" charset="utf-8"></script>
+<style>
+    .tittle {
+        font-weight: 500;
+        text-align: center;
+        font-size: 48px;
+        color: #1f2329;
+        line-height: 48px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+    
+    .life_tittle {
+        color: #1f2329;
+        margin-top: 12px;
+    }
+    
+    .text_hidden {
+        height: 38px;
+        overflow: hidden;
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    
+    .img-responsive {
+        width: 100%;
+        box-sizing: border-box;
+        display: block;
+        height: auto;
+        max-width: 100%;
+    }
+    
+    .border {
+        box-sizing: border-box;
+        border: 1px solid #96C2F1;
+        background-color: #EFF7FF;
+    }
+    
+    .box:hover {
+        text-decoration: none;
+        cursor: pointer;
+        transform: translateY(-5px);
+    }
+    
+    .knowmore {
+        width: 100%;
+        height: 173.19px;
+        max-width: 100%;
+        line-height: 173.19px;
+        text-align: center;
+    }
+    
+    .information {
+        box-sizing: border-box;
+        height: 55%;
+        width: 100%;
+        border: 1px solid #2F4056;
+    }
+    
+    .evaluate {
+        width: 100%;
+    }
+    
+    .information_left {
+        padding: 20px;
+        float: left;
+    }
+    
+    .information_left ul li {
+        margin-top: 10px;
+    }
+    
+    .information_right {
+        padding: 20px;
+        float: left;
+        margin-left: 50px;
+    }
+    
+    .information_right ul li {
+        margin-top: 10px;
+    }
+    
+    .Resume_image {
+        margin-left: 50px;
+        float: left;
+    }
+    
+    .evaluate1 {
+        padding: 20px;
+        margin-top: 10px;
+        border: 1px solid #1E9FFF;
+    }
+    
+    .evaluate1 ul li {
+        margin-top: 10px;
+    }
+    /* .link {
+        border: 1px solid #ccc;
+    }
+    
+    .link ul {
+        pad: 5px;
+    }
+    
+    .link ul li {
+        margin-top: 10px;
+        border: 1px solid #1E9FFF;
+        height: 20px;
+    }
+    
+    .link ul li:hover {
+        background-color: #ccc;
+    } */
+</style>
+<!-- 用户详情 start-->
+<div class="layui-container" style="border: 1px solid #dddddd;">
+    <div class="layui-row">
+        <div class="layui-col-md3 layui-col-xs6 box" style="height: 100%; border-right: #dddddd;">
+            <div class="head_portrait ">
+                <img style="width: 100%; " src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg " alt=" ">
+            </div>
+            <h3 style="text-align: center;margin-top: 20px; ">人海</h3>
+            <div style="display: flex;justify-content: space-between;margin-top: 20px; background-color: #fff;">
+                <div>
+                    <i class=" layui-icon " style="font-size: 24px;">&#xe68e;</i>
+                    <h4 style="margin-top: 5px;">主页</h4>
+                </div>
+                <div>
+                    <i class="layui-icon " style="font-size: 24px;">&#xe611;</i>、
+                    <h4 style="margin-top: 5px;">消息</h4>
+                </div>
+                <div>
+                    <i class="layui-icon " style="font-size: 24px;">&#xe609;</i>
+                    <h4 style="margin-top: 5px;">发布</h4>
+                </div>
+                <div>
+                    <i class="layui-icon " style="font-size: 24px;">&#xe600;</i>
+                    <h4 style="margin-top: 5px;">收藏</h4>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <h4 style="margin-top:15px ;">个性标签</h4>
+                <div class="label" style="margin-top: 15px; border: 1px solid #FFB800; height: 100px;">
+
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <h4 style="margin-top:15px ;">个性签名</h4>
+                <div class="signature" style="margin-top: 20px ;border: 1px solid #1E9FFF; height: 50px;">
+                    <p></p>
+                </div>
+            </div>
+
+            <div style="width: 100%;">
+                <h4 style="margin-top:15px ;">照片墙</h4>
+                <div class="photo_wall" style="margin-top: 20px ;border: 1px solid #1E9FFF; height: 200px;">
+                    <img src="" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md9 layui-col-xs6 box ">
+            <div class="layui-tab ">
+                <ul class="layui-tab-title ">
+                    <li class="layui-this ">我的发布</li>
+                    <li>我的班级</li>
+                    <li>我的简历</li>
+                </ul>
+                <div class="layui-tab-content ">
+                    <div class="layui-tab-item layui-show ">内容一</div>
+                    <div class="layui-tab-item ">
+                        内容二
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="layui-tab-item ">
+                        <h2>基本信息</h2>
+                        <div class="information">
+                            <div class="information_left">
+                                <ul>
+                                    <li>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:&nbsp;&nbsp;人海</li>
+                                    <li>出生日期:&nbsp;&nbsp;2001/9</li>
+                                    <li>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业:&nbsp;&nbsp;大数据</li>
+                                    <li>毕业院校:&nbsp;&nbsp;河南大学</li>
+                                    <li>联系电话:&nbsp;&nbsp;15839487904</li>
+                                    <li>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:&nbsp;&nbsp;1457481392@qq.com</li>
+                                </ul>
+                            </div>
+                            <div class="information_right">
+                                <ul>
+                                    <li>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别:&nbsp;&nbsp;男</li>
+                                    <li>婚姻状况:&nbsp;&nbsp;未婚</li>
+                                    <li>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历:&nbsp;&nbsp;本科</li>
+                                </ul>
+                            </div>
+                            <div class="Resume_image">
+                                <img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg" alt="">
+                            </div>
+                        </div>
+                        <h2>自我评价</h2>
+                        <div class="evaluate">
+                            <div class="evaluate1">
+                                <ul>
+                                    <li>1、熟悉软件验证的一般理论和方法，较丰富的功能测试与性能测试经验。</li>
+                                    <li>2、良好的独立分析，故障排查和解决问题的能力，并能关注细节。</li>
+                                    <li>3、掌握常用测试工具，如Spirent、Silkperformer、Loadrunner,CPPUnit。</li>
+                                    <li>4、熟练使用C++、Python、LinuxShell等程序语言。</li>
+                                    <li>5、熟练操作Unix/Windows系统和Unix/Windows工具，熟悉Oracle、SQLServer。</li>
+                                    <li>6、熟悉网络协议，如TCP/IP,HTTP/HTTPS,FTP,DHCP,DNS,SSH,VNC</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 用户详情end -->
+<!-- 大标题 start-->
+<h1 class="tittle ">毕业回忆</h1>
+<hr class="layui-border-orange ">
+<!-- 大标题end -->
+<!-- 河大生活start -->
+<div class="layui-container ">
+    <h2 style="margin: 20px 0px; ">河大生活</h2>
+    <div class="layui-row layui-col-space10 ">
+        <div class="layui-col-md3 layui-col-xs6 box ">
+            <img class="img-responsive border " style="border-bottom: 0px; " src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg "
+                alt=" ">
+            <p class="text_hidden border " style="border-top: 0px; ">河大logo</p>
+        </div>
+        <div class="layui-col-md3 layui-col-xs6 box ">
+            <img class="img-responsive border " style="border-bottom: 0px; " src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg "
+                alt=" ">
+            <p class="text_hidden border " style="border-top: 0px; ">河大logo</p>
+        </div>
+        <div class="layui-col-md3 layui-col-xs6 box ">
+            <img class="img-responsive border " style="border-bottom: 0px; " src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg "
+                alt=" ">
+            <p class="text_hidden border " style="border-top: 0px; ">河大logo</p>
+        </div>
+        <div class="layui-col-md3 layui-col-xs6 box ">
+            <div class="knowmore border " style="background-color: #fff ;border-bottom: 0px; "><i class="layui-icon " style="font-size: 48px ; ">&#xe624</i> </div>
+            <p class="text_hidden border " style="border-top: 0px; text-align: center; background-color: #fff; ">创建更多精彩</p>
+        </div>
+    </div>
+</div>
+<!-- 河大生活end -->
+<hr class="layui-border-orange " style="margin:20px 0 ">
+<!-- 赛场风光start -->
+<div class="layui-container ">
+    <h2 style="margin: 20px 0px; ">赛场风光</h2>
+    <div class="layui-row layui-col-space10 ">
+        <div class="layui-col-md3 layui-col-xs6 box ">
+            <img class="img-responsive border " style="border-bottom: 0px; " src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg "
+                alt=" ">
+            <p class="text_hidden border " style="border-top: 0px; ">河大logo</p>
+        </div>
+        <div class="layui-col-md3 layui-col-xs6 box ">
+            <img class="img-responsive border " style="border-bottom: 0px; " src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg "
+                alt=" ">
+            <p class="text_hidden border " style="border-top: 0px; ">河大logo</p>
+        </div>
+        <div class="layui-col-md3 layui-col-xs6 box ">
+            <img class="img-responsive border " style="border-bottom: 0px; " src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg "
+                alt=" ">
+            <p class="text_hidden border " style="border-top: 0px; ">河大logo</p>
+        </div>
+        <div class="layui-col-md3 layui-col-xs6 box ">
+            <div class="knowmore border " style="background-color: #fff ;border-bottom: 0px; "><i class="layui-icon " style="font-size: 48px ; ">&#xe624</i> </div>
+            <p class="text_hidden border " style="border-top: 0px; text-align: center; background-color: #fff; ">创建更多精彩</p>
+        </div>
+    </div>
+</div>
+<!-- 赛场风光end -->
+<hr class="layui-border-orange " style="margin:20px 0 ">
+<!-- 科研成就start -->
+<div class="layui-container ">
+    <h2 style="margin: 20px 0px; ">学业成就</h2>
+    <div class="layui-row layui-col-space10 ">
+        <div class="layui-col-md3 layui-col-xs6 box ">
+            <img class="img-responsive border " style="border-bottom: 0px; " src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg "
+                alt=" ">
+            <p class="text_hidden border " style="border-top: 0px; ">河大logo</p>
+        </div>
+        <div class="layui-col-md3 layui-col-xs6 box ">
+            <img class="img-responsive border " style="border-bottom: 0px; " src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg "
+                alt=" ">
+            <p class="text_hidden border " style="border-top: 0px; ">河大logo</p>
+        </div>
+        <div class="layui-col-md3 layui-col-xs6 box ">
+            <img class="img-responsive border " style="border-bottom: 0px; " src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg "
+                alt=" ">
+            <p class="text_hidden border " style="border-top: 0px; ">河大logo</p>
+        </div>
+        <div class="layui-col-md3 layui-col-xs6 box ">
+            <div class="knowmore border " style="background-color: #fff ;border-bottom: 0px; "><i class="layui-icon " style="font-size: 48px ; ">&#xe624</i> </div>
+            <p class="text_hidden border " style="border-top: 0px; text-align: center; background-color: #fff; ">创建更多精彩</p>
+        </div>
+    </div>
+</div>
+<!-- 科研成就end -->
+<!-- 相关链接 start-->
+<!-- <div class="layui-container" style="margin-top: 40px;">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md6 layui-col-xs12 link">
+            <ul>
+                <li>
+                    <a href="#">学校概况</a>
+                </li>
+                <li>
+                    <a href="#">院系部门</a>
+                </li>
+                <li>
+                    <a href="#">图书馆</a>
+                </li>
+                <li>
+                    <a href="#">档案馆</a>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-col-md6 layui-col-xs12 link">
+            <ul>
+                <li>
+                    <a href="#">新闻资讯</a>
+                </li>
+                <li>
+                    <a href="#">招生就业</a>
+                </li>
+                <li>
+                    <a href="#">教务系统</a>
+                </li>
+                <li>
+                    <a href="#">科学研究</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div> -->
+<!-- 相关链接 end-->
+<!-- 版权声明 start-->
+<div style="margin-top: 20px;height: 30px;; background-color: #2d8cf0; ">
+    <h4 style="text-align: center ;line-height: 30px; ">Copyright © 2021河南大学 版权所有</h4>
+</div>
+<!-- 版权声明 end -->
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function() {
+        var element = layui.element;
+    });
+</script>
 
 </html>

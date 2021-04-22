@@ -61,19 +61,21 @@
     }
     
     .information {
+        display: flex;
         box-sizing: border-box;
-        height: 55%;
-        width: 100%;
         border: 1px solid #2F4056;
     }
     
     .evaluate {
-        width: 100%;
     }
-    
+
+    .information-body{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
     .information_left {
         padding: 20px;
-        float: left;
     }
     
     .information_left ul li {
@@ -82,8 +84,6 @@
     
     .information_right {
         padding: 20px;
-        float: left;
-        margin-left: 50px;
     }
     
     .information_right ul li {
@@ -187,7 +187,7 @@
                             <li></li>
                         </ul>
                     </div>
-                    <div class="layui-tab-item ">
+                    <div class="layui-tab-item information-body">
                         <div class="">
                             <h2>基本信息</h2>
                             <div class="information">

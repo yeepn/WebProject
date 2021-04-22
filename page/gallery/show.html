@@ -1,0 +1,36 @@
+
+<style>
+    @charset "utf-8";*{padding:0;margin:0;}
+    div{font-family:"微软雅黑";font-size:14px;color:#666;padding:0;margin:0;}
+    body{background:#eee;}
+
+    /*css3实现照片墙的样式*/
+    .container{width:960px;height:450px;margin:60px auto;position:relative;}
+    .container img{position:absolute;padding:10px 10px 15px;background:#fff;border:1px solid #ddd;-webkit-transition:1s ;-moz-transition:1s ;transition:1s ;z-index:1;}
+    .container img:hover{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);transform:rotate(0deg);-webkit-transform:scale(1.1);-moz-transform:scale(1.1);transform:scale(1.1);-webkit-box-shadow:5px 5px 5px #ddd;-moz-box-shadow:5px 5px 5px #ddd;box-shadow:5px 5px 5px #ddd;z-index:2;cursor:pointer;}
+    .pic1{top:0px;left:400px;-webkit-transform:rotate(-5deg);-moz-transform:rotate(-5deg);transform:rotate(-5deg);}
+    .pic2{top:0px;left:600px;-webkit-transform:rotate(-20deg);-moz-transform:rotate(-20deg);transform:rotate(-20deg);}
+    .pic3{bottom:0;right:0;-webkit-transform:rotate(5deg);-moz-transform:rotate(5deg);transform:rotate(5deg);}
+    .pic4{bottom:0;left:300px;-webkit-transform:rotate(-10deg);-moz-transform:rotate(-10deg);transform:rotate(-10deg);}
+    .pic5{bottom:0;left:0;-webkit-transform:rotate(-10deg);-moz-transform:rotate(-10deg);transform:rotate(-10deg);}
+    .pic6{top:0;left:0;-webkit-transform:rotate(10deg);-moz-transform:rotate(10deg);transform:rotate(10deg);}
+    .pic7{top:0;left:850px;-webkit-transform:rotate(20deg);-moz-transform:rotate(20deg);transform:rotate(20deg);}
+    .pic8{bottom:-20px;right:630px;-webkit-transform:rotate(5deg);-moz-transform:rotate(5deg);transform:rotate(5deg);}
+    .pic9{top:90px;left:550px;-webkit-transform:rotate(15deg);-moz-transform:rotate(15deg);transform:rotate(15deg);}
+    .pic10{left:180px;top:20px;-webkit-transform:rotate(-10deg);-moz-transform:rotate(-10deg);transform:rotate(-10deg);}
+    .gabody{height: 100vh;background-image: url("https://ids.henu.edu.cn/authserver/customHenu/static/web/images/inside_bg.jpg")}
+</style>
+<div class="gabody">
+    <div class="container">
+        <img src="images/galleryTest/mm1.jpg" class="pic1"  />
+        <img src="images/galleryTest/mm2.jpg" class="pic2"  />
+        <img src="images/galleryTest/mm3.jpg" class="pic3"  />
+        <img src="images/galleryTest/mm4.jpg" class="pic4"  />
+        <img src="images/galleryTest/mm5.jpg" class="pic5"  />
+        <img src="images/galleryTest/mm6.jpg" class="pic6"  />
+        <img src="images/galleryTest/mm7.jpg" class="pic7"  />
+        <img src="images/galleryTest/mm8.jpg" class="pic8"  />
+        <img src="images/galleryTest/mm9.jpg" class="pic9"  />
+        <img src="images/galleryTest/mm10.jpg" class="pic10"  />
+    </div>
+</div>

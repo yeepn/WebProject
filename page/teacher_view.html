@@ -8,4 +8,227 @@
 <script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script src="../js/lay-config.js?v=2.0.0" charset="utf-8"></script>
 
+<div class="layui-container" style="border: 1px solid #dddddd;">
+    <div class="layui-row">
+        <div class="layui-col-md3 layui-col-xs12" style="height: 100%; border-right: #dddddd;">
+            <div class="head_portrait ">
+                <img style="width: 100%; " src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg " alt=" ">
+            </div>
+            <h3 style="text-align: center;margin-top: 20px; ">辅导员</h3>
+            <div style="display: flex;justify-content: space-between;margin-top: 20px; background-color: #fff;">
+                <div>
+                    <i class=" layui-icon " style="font-size: 24px;">&#xe68e;</i>
+                    <h4 style="margin-top: 5px;">主页</h4>
+                </div>
+                <div>
+                    <i class="layui-icon " style="font-size: 24px;">&#xe611;</i>
+                    <h4 style="margin-top: 5px;">消息</h4>
+                </div>
+                <div>
+                    <i class="layui-icon " style="font-size: 24px;">&#xe609;</i>
+                    <h4 style="margin-top: 5px;">发布</h4>
+                </div>
+                <div>
+                    <i class="layui-icon " style="font-size: 24px;">&#xe600;</i>
+                    <h4 style="margin-top: 5px;">收藏</h4>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <h4 style="margin-top:15px ;">个性标签</h4>
+                <div class="label" style="margin-top: 15px; border: 1px solid #FFB800; height: 100px;">
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <h4 style="margin-top:15px ;">照片墙</h4>
+                <div class="photo_wall" style="margin-top: 20px ;border: 1px solid #1E9FFF; height: 200px;">
+                    <img src="" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md9 layui-col-xs12">
+            <div class="layui-tab ">
+                <ul class="layui-tab-title ">
+                    <li class="layui-this ">专业管理</li>
+                </ul>
+                <div class="layui-tab-content ">
+                    <!-- 专业管理start -->
+                    <div class="layui-tab-item layui-show ">
+                        <div class="layuimini-container">
+                            <div class="layuimini-main">
+                                <fieldset class="table-search-fieldset">
+                                    <legend>搜索信息</legend>
+                                    <div style="margin: 10px 10px 10px 10px">
+                                        <form class="layui-form layui-form-pane" action="">
+                                            <div class="layui-form-item">
+                                                <div class="layui-inline">
+                                                    <label class="layui-form-label">班级号</label>
+                                                    <div class="layui-input-inline">
+                                                        <input type="text" name="username" autocomplete="off" class="layui-input">
+                                                    </div>
+                                                </div>
+                                                <div class="layui-inline">
+                                                    <label class="layui-form-label">班级名</label>
+                                                    <div class="layui-input-inline">
+                                                        <input type="text" name="username" autocomplete="off" class="layui-input">
+                                                    </div>
+                                                </div>
+                                                <div class="layui-inline">
+                                                    <button type="submit" class="layui-btn layui-btn-primary" lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </fieldset>
+
+                                <script type="text/html" id="toolbarDemo">
+                                    <div class="layui-btn-container">
+                                        <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加 </button>
+                                        <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>
+                                    </div>
+                                </script>
+
+                                <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+                                <script type="text/html" id="currentTableBar">
+                                    <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
+                                    <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+                                    <a href="#" class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="enter">进入</a>
+                                </script>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 专业管理end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 版权声明 start-->
+<div style="height: 30px;; background-color: #2d8cf0; ">
+    <h4 style="text-align: center ;line-height: 30px; ">Copyright © 2021河南大学 版权所有</h4>
+</div>
+<!-- 版权声明 end -->
+<script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function() {
+        var element = layui.element;
+    });
+    layui.use(['form', 'table'], function() {
+        var $ = layui.jquery,
+            form = layui.form,
+            table = layui.table;
+        table.render({
+            elem: '#currentTableId',
+            url: '../api/table.json',
+            toolbar: '#toolbarDemo',
+            defaultToolbar: ['filter', 'exports', 'print', {
+                title: '提示',
+                layEvent: 'LAYTABLE_TIPS',
+                icon: 'layui-icon-tips'
+            }],
+            cols: [
+                [{
+                    type: "checkbox",
+                    width: 50
+                }, {
+                    field: 'id',
+                    width: 100,
+                    title: '班号',
+                    sort: true
+                }, {
+                    field: 'username',
+                    width: 100,
+                    title: '班级名'
+                }, {
+                    title: '操作',
+                    minWidth: 150,
+                    toolbar: '#currentTableBar',
+                    align: "center"
+                }]
+            ],
+            limits: [10, 15, 20, 25, 50, 100],
+            limit: 15,
+            page: true,
+            skin: 'line'
+        });
+
+        // 监听搜索操作
+        form.on('submit(data-search-btn)', function(data) {
+            var result = JSON.stringify(data.field);
+            layer.alert(result, {
+                title: '最终的搜索信息'
+            });
+
+            //执行搜索重载
+            table.reload('currentTableId', {
+                page: {
+                    curr: 1
+                },
+                where: {
+                    searchParams: result
+                }
+            }, 'data');
+
+            return false;
+        });
+
+        /**
+         * toolbar监听事件
+         */
+        table.on('toolbar(currentTableFilter)', function(obj) {
+            if (obj.event === 'add') { // 监听添加操作
+                var index = layer.open({
+                    title: '添加班级',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin: true,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: '../page/table/add_class.html',
+                });
+                $(window).on("resize", function() {
+                    layer.full(index);
+                });
+            } else if (obj.event === 'delete') { // 监听删除操作
+                var checkStatus = table.checkStatus('currentTableId'),
+                    data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+            }
+        });
+
+        //监听表格复选框选择
+        table.on('checkbox(currentTableFilter)', function(obj) {
+            console.log(obj)
+        });
+
+        table.on('tool(currentTableFilter)', function(obj) {
+            var data = obj.data;
+            if (obj.event === 'edit') {
+
+                var index = layer.open({
+                    title: '编辑班级',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin: true,
+                    shadeClose: true,
+                    area: ['100%', '100%'],
+                    content: '../page/table/edit_class.html',
+                });
+                $(window).on("resize", function() {
+                    layer.full(index);
+                });
+                return false;
+            } else if (obj.event === 'delete') {
+                layer.confirm('真的删除行么', function(index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            }
+        });
+
+    });
+</script>
+
 </html>

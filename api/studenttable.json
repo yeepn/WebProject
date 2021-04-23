@@ -1,0 +1,127 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 1000,
+  "data": [
+    {
+      "id": 10000,
+      "username": "学生1",
+      "sex": "女",
+      "college": "学院",
+      "grade": "签名-0",
+      "experience": 255,
+      "albums": 24,
+      "views": 82830700,
+      "classify": "作家",
+      "score": 57
+    },
+    {
+      "id": 10001,
+      "username": "user-1",
+      "sex": "男",
+      "college": "城市-1",
+      "grade": "签名-1",
+      "experience": 884,
+      "albums": 58,
+      "views": 64928690,
+      "classify": "词人",
+      "score": 27
+    },
+    {
+      "id": 10002,
+      "username": "user-2",
+      "sex": "女",
+      "college": "城市-2",
+      "grade": "签名-2",
+      "experience": 650,
+      "albums": 77,
+      "views": 6298078,
+      "classify": "酱油",
+      "score": 31
+    },
+    {
+      "id": 10003,
+      "username": "user-3",
+      "sex": "女",
+      "college": "城市-3",
+      "grade": "签名-3",
+      "experience": 362,
+      "albums": 157,
+      "views": 37117017,
+      "classify": "诗人",
+      "score": 68
+    },
+    {
+      "id": 10004,
+      "username": "user-4",
+      "sex": "男",
+      "college": "城市-4",
+      "grade": "签名-4",
+      "experience": 807,
+      "albums": 51,
+      "views": 76263262,
+      "classify": "作家",
+      "score": 6
+    },
+    {
+      "id": 10005,
+      "username": "user-5",
+      "sex": "女",
+      "college": "城市-5",
+      "grade": "签名-5",
+      "experience": 173,
+      "albums": 68,
+      "views": 60344147,
+      "classify": "作家",
+      "score": 87
+    },
+    {
+      "id": 10006,
+      "username": "user-6",
+      "sex": "女",
+      "college": "城市-6",
+      "grade": "签名-6",
+      "experience": 982,
+      "albums": 37,
+      "views": 57768166,
+      "classify": "作家",
+      "score": 34
+    },
+    {
+      "id": 10007,
+      "username": "user-7",
+      "sex": "男",
+      "college": "城市-7",
+      "grade": "签名-7",
+      "experience": 727,
+      "albums": 150,
+      "views": 82030578,
+      "classify": "作家",
+      "score": 28
+    },
+    {
+      "id": 10008,
+      "username": "user-8",
+      "sex": "男",
+      "college": "城市-8",
+      "grade": "签名-8",
+      "experience": 951,
+      "albums": 133,
+      "views": 16503371,
+      "classify": "词人",
+      "score": 14
+    },
+    {
+      "id": 10009,
+      "username": "user-9",
+      "sex": "女",
+      "college": "城市-9",
+      "grade": "签名-9",
+      "experience": 484,
+      "albums": 25,
+      "views": 86801934,
+      "classify": "词人",
+      "score": 75
+    }
+  ]
+}

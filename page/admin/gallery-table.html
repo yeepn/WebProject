@@ -26,7 +26,7 @@
 
         table.render({
             elem: '#currentTableId2',
-            url: 'api/studenttable.json',
+            url: 'api/gallerytable.json',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -36,9 +36,9 @@
             cols: [[
                 {type: "checkbox", width: 50},
                 {field: 'id', width: 80, title: 'ID', sort: true},
-                {field: 'sex', width: 80, title: '性别', sort: true},
-                {field: 'college', width: 280, title: '学院'},
-                {field: 'grade', title: '签名', minWidth: 150},
+                {field: 'name', width: 80, title: '标题', sort: true},
+                {field: 'detail', width: 280, title: '描述'},
+                {field: 'singns', title: '标签', minWidth: 150},
                 {field: 'albums', title: '相册数', minWidth: 150},
                 {field: 'views', width: 135, title: '点击量', sort: true},
                 {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}

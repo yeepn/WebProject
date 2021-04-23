@@ -1,0 +1,37 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "page/welcome.html?t=1"
+  },
+  "logoInfo": {
+    "title": "",
+    "image": "http://www.henu.edu.cn/images/index/henu.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "首页",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self"
+    },
+    {
+      "title": "图片",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self"
+    },
+    {
+      "title": "音频",
+      "icon": "fa fa-lemon-o",
+      "href": "",
+      "target": "_self"
+    },
+    {
+      "title": "视频",
+      "icon": "fa fa-slideshare",
+      "href": "",
+      "target": "_self"
+    }
+  ]
+}

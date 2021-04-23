@@ -13,25 +13,57 @@
       "title": "首页",
       "icon": "fa fa-address-book",
       "href": "",
-      "target": "_self"
-    },
-    {
-      "title": "图片",
-      "icon": "fa fa-address-book",
-      "href": "",
-      "target": "_self"
-    },
-    {
-      "title": "音频",
-      "icon": "fa fa-lemon-o",
-      "href": "",
-      "target": "_self"
-    },
-    {
-      "title": "视频",
-      "icon": "fa fa-slideshare",
-      "href": "",
-      "target": "_self"
+      "target": "_self",
+      "child": [
+        {
+          "title": "班级管理",
+          "href": "page/admin/classes-setting.html",
+          "icon": "fa fa-list-alt",
+          "target": "_self"
+        },
+        {
+          "title": "相册管理",
+          "href": "page/student-gallery-manage.html",
+          "icon": "fa fa-address-book-o",
+          "target": "_self"
+        },
+        {
+          "title": "学生管理",
+          "href": "page/admin/student-manage.html",
+          "icon": "fa fa-address-book-o",
+          "target": "_self"
+        },
+        {
+          "title": "个人中心",
+          "href": "page/teacher_view.html",
+          "icon": "fa fa-user-circle",
+          "target": "_self"
+        },
+        {
+          "title": "辅导员账户管理",
+          "href": "page/admin/manage-instructor-account.html",
+          "icon": "fa fa-list-alt",
+          "target": "_self"
+        },
+        {
+          "title": "首页设置",
+          "href": "page/admin/index-setting.html",
+          "icon": "fa fa-list-alt",
+          "target": "_self"
+        },
+        {
+          "title": "上传设置",
+          "href": "page/admin/upload-setting.html",
+          "icon": "fa fa-list-alt",
+          "target": "_self"
+        },
+        {
+          "title": "有害信息扫描",
+          "href": "page/admin/ghscan.html",
+          "icon": "fa fa-list-alt",
+          "target": "_self"
+        }
+      ]
     }
   ]
 }

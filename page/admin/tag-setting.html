@@ -1,17 +1,37 @@
 <div class="layuimini-container layuimini-page-anim">
     <div class="layuimini-main">
+
+        <fieldset class="table-search-fieldset">
+            <legend>搜索信息</legend>
+            <div style="margin: 10px 10px 10px 10px">
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">标签</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="username" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
                 <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加 </button>
                 <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>
             </div>
         </script>
-        <table class="layui-hide" id="currentTableId2" lay-filter="currentTableFilter2"></table>
 
-        <script type="text/html" id="currentTableBar2">
-            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit2">编辑</a>
-            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-setting" lay-event="setting2">设置</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="preview">查看</a>
+        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+        <script type="text/html" id="currentTableBar">
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
         </script>
 
     </div>
@@ -25,8 +45,8 @@
             miniPage = layui.miniPage;
 
         table.render({
-            elem: '#currentTableId2',
-            url: 'api/gallerytable.json',
+            elem: '#currentTableId',
+            url: 'api/tagtable.json',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -35,13 +55,10 @@
             }],
             cols: [[
                 {type: "checkbox", width: 50},
-                {title: '操作', minWidth: 300, toolbar: '#currentTableBar2', align: "center"},
                 {field: 'id', width: 80, title: 'ID', sort: true},
-                {field: 'name', width: 80, title: '标题', sort: true},
-                {field: 'detail', width: 280, title: '描述'},
-                {field: 'singns', title: '标签', minWidth: 150},
-                {field: 'albums', title: '相册数', minWidth: 150},
-                {field: 'views', width: 135, title: '点击量', sort: true}
+                {field: 'tagname', width: 280, title: '标签名'},
+                {field: 'people', width: 80, title: '人数', sort: true},
+                {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 15,
@@ -57,7 +74,7 @@
             });
 
             //执行搜索重载
-            table.reload('currentTableId2', {
+            table.reload('currentTableId', {
                 page: {
                     curr: 1
                 }
@@ -72,9 +89,9 @@
         /**
          * toolbar事件监听
          */
-        table.on('toolbar(currentTableFilter2)', function (obj) {
+        table.on('toolbar(currentTableFilter)', function (obj) {
             if (obj.event === 'add') {   // 监听添加操作
-                var content = miniPage.getHrefContent('page/student-upload.html');
+                var content = miniPage.getHrefContent('page/admin/tag-setting/add.html');
                 var openWH = miniPage.getOpenWidthHeight();
 
                 var index = layer.open({
@@ -90,12 +107,16 @@
                 $(window).on("resize", function () {
                     layer.full(index);
                 });
-            } else if (obj.event === 'setting2') {  // 监听删除操作
-                var content = miniPage.getHrefContent('page/admin/gallery-table/student-upload.html');
+            } else if (obj.event === 'delete') {  // 监听删除操作
+                var checkStatus = table.checkStatus('currentTableId')
+                    , data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+            }else if(obj.event === 'setting'){ // 设置删除操作
+                var content = miniPage.getHrefContent('page/admin/classes-setting/setting.html');
                 var openWH = miniPage.getOpenWidthHeight();
 
                 var index = layer.open({
-                    title: '添加用户',
+                    title: '班级设置',
                     type: 1,
                     shade: 0.2,
                     maxmin:true,
@@ -107,20 +128,17 @@
                 $(window).on("resize", function () {
                     layer.full(index);
                 });
-            }else if(obj.event === 'preview'){ // 设置删除操作
-                console.log(123)
-                window.location = 'page/gallery/show.html';
             }
         });
 
         //监听表格复选框选择
-        table.on('checkbox(currentTableFilter2)', function (obj) {
+        table.on('checkbox(currentTableFilter)', function (obj) {
             console.log(obj)
         });
 
-        table.on('tool(currentTableFilter2)', function (obj) {
+        table.on('tool(currentTableFilter)', function (obj) {
             var data = obj.data;
-            if (obj.event === 'edit2') {
+            if (obj.event === 'edit') {
 
                 var content = miniPage.getHrefContent('page/admin/classes-setting/edit.html');
                 var openWH = miniPage.getOpenWidthHeight();
@@ -144,9 +162,6 @@
                     obj.del();
                     layer.close(index);
                 });
-            }else if(obj.event === 'preview'){ // 设置删除操作
-                console.log(123)
-                window.location = 'page/gallery/show.html';
             }
         });
 

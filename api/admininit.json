@@ -58,6 +58,12 @@
           "target": "_self"
         },
         {
+          "title": "标签设置",
+          "href": "page/admin/tag-setting.html",
+          "icon": "fa fa-tags",
+          "target": "_self"
+        },
+        {
           "title": "有害信息扫描",
           "href": "page/admin/ghscan.html",
           "icon": "fa fa-list-alt",

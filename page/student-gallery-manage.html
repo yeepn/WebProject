@@ -11,7 +11,7 @@
         <script type="text/html" id="currentTableBar2">
             <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit2">编辑</a>
             <a class="layui-btn layui-btn-normal layui-btn-xs data-count-setting" lay-event="setting2">设置</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete2">查看</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="preview">查看</a>
         </script>
 
     </div>
@@ -90,16 +90,12 @@
                 $(window).on("resize", function () {
                     layer.full(index);
                 });
-            } else if (obj.event === 'delete2') {  // 监听删除操作
-                var checkStatus = table.checkStatus('currentTableId')
-                    , data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
-            }else if(obj.event === 'setting2'){ // 设置删除操作
-                var content = miniPage.getHrefContent('page/admin/classes-setting/setting.html');
+            } else if (obj.event === 'setting2') {  // 监听删除操作
+                var content = miniPage.getHrefContent('page/admin/gallery-table/student-upload.html');
                 var openWH = miniPage.getOpenWidthHeight();
 
                 var index = layer.open({
-                    title: '班级设置',
+                    title: '添加用户',
                     type: 1,
                     shade: 0.2,
                     maxmin:true,
@@ -111,6 +107,9 @@
                 $(window).on("resize", function () {
                     layer.full(index);
                 });
+            }else if(obj.event === 'preview'){ // 设置删除操作
+                console.log(123)
+                window.location = 'page/gallery/show.html';
             }
         });
 
@@ -145,6 +144,9 @@
                     obj.del();
                     layer.close(index);
                 });
+            }else if(obj.event === 'preview'){ // 设置删除操作
+                console.log(123)
+                window.location = 'page/gallery/show.html';
             }
         });
 

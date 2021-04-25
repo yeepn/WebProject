@@ -4,7 +4,7 @@
  * version:2.0
  * description:layuimini 主体框架扩展
  */
-layui.define(["jquery", "miniMenu", "element","miniPage", "miniTheme"], function (exports) {
+layui.define(["jquery", "miniMenu", "element", "miniPage", "miniTheme"], function (exports) {
     var $ = layui.$,
         element = layui.element,
         layer = layui.layer,
@@ -21,6 +21,7 @@ layui.define(["jquery", "miniMenu", "element","miniPage", "miniTheme"], function
 
         /**
          * 后台框架初始化
+         * @param options.headers   请求头
          * @param options.iniUrl   后台初始化接口地址
          * @param options.clearUrl   后台清理缓存接口
          * @param options.renderPageVersion 初始化页面是否加版本号
@@ -30,7 +31,11 @@ layui.define(["jquery", "miniMenu", "element","miniPage", "miniTheme"], function
          * @param options.loadingTime 初始化加载时间
          * @param options.pageAnim 切换菜单动画
          */
-        render: function (options) {
+        render:
+            function (options)
+            {
+            options.method = options.method;
+            options.headers = options.headers || {};
             options.iniUrl = options.iniUrl || null;
             options.clearUrl = options.clearUrl || null;
             options.renderPageVersion = options.renderPageVersion || false;
@@ -39,41 +44,48 @@ layui.define(["jquery", "miniMenu", "element","miniPage", "miniTheme"], function
             options.menuChildOpen = options.menuChildOpen || false;
             options.loadingTime = options.loadingTime || 1;
             options.pageAnim = options.pageAnim || false;
-            $.getJSON(options.iniUrl, function (data) {
-                if (data == null) {
-                    miniAdmin.error('暂无菜单信息')
-                } else {
-                    miniAdmin.renderLogo(data.logoInfo);
-                    miniAdmin.renderClear(options.clearUrl);
-                    miniAdmin.renderAnim(options.pageAnim);
-                    miniAdmin.listen({
-                        homeInfo:data.homeInfo,
-                        multiModule: options.multiModule,
-                    });
-                    miniMenu.render({
-                        menuList: data.menuInfo,
-                        multiModule: options.multiModule,
-                        menuChildOpen: options.menuChildOpen
-                    });
-                    miniPage.render({
-                        homeInfo:data.homeInfo,
-                        menuList: data.menuInfo,
-                        multiModule: options.multiModule,
-                        renderPageVersion: options.renderPageVersion,
-                        menuChildOpen: options.menuChildOpen,
-                        listenSwichCallback: function () {
-                            miniAdmin.renderDevice();
+            $.ajax({
+                    type: options.method || 'get',
+                    url: options.iniUrl,
+                    headers: options.headers || {},
+                    success: function (data) {
+                        if (data == null) {
+                            miniAdmin.error('暂无菜单信息')
                         }
-                    });
-                    miniTheme.render({
-                        bgColorDefault: options.bgColorDefault,
-                        listen: true,
-                    });
-                    miniAdmin.deleteLoader(options.loadingTime);
-                }
-            }).fail(function () {
-                miniAdmin.error('菜单接口有误');
-            });
+                        else {
+                            miniAdmin.renderLogo(data.logoInfo);
+                            miniAdmin.renderClear(options.clearUrl);
+                            miniAdmin.renderAnim(options.pageAnim);
+                            miniAdmin.listen({
+                                homeInfo: data.homeInfo,
+                                multiModule: options.multiModule,
+                            });
+                            miniMenu.render({
+                                menuList: data.menuInfo,
+                                multiModule: options.multiModule,
+                                menuChildOpen: options.menuChildOpen
+                            });
+                            miniPage.render({
+                                homeInfo: data.homeInfo,
+                                menuList: data.menuInfo,
+                                multiModule: options.multiModule,
+                                renderPageVersion: options.renderPageVersion,
+                                menuChildOpen: options.menuChildOpen,
+                                listenSwichCallback: function () {
+                                    miniAdmin.renderDevice();
+                                }
+                            });
+                            miniTheme.render({
+                                bgColorDefault: options.bgColorDefault,
+                                listen: true,
+                            });
+                            miniAdmin.deleteLoader(options.loadingTime);
+                        }
+                    },
+                    error:function () {
+                        miniAdmin.error('菜单接口有误');
+                    }
+                });
         },
 
         /**
@@ -90,7 +102,7 @@ layui.define(["jquery", "miniMenu", "element","miniPage", "miniTheme"], function
          * @param clearUrl
          */
         renderClear: function (clearUrl) {
-            $('.layuimini-clear').attr('data-href',clearUrl);
+            $('.layuimini-clear').attr('data-href', clearUrl);
         },
 
         /**
@@ -151,7 +163,7 @@ layui.define(["jquery", "miniMenu", "element","miniPage", "miniTheme"], function
                 el.msExitFullscreen();
             } else if (el.oRequestFullscreen) {
                 el.oCancelFullScreen();
-            }else if (el.mozCancelFullScreen) {
+            } else if (el.mozCancelFullScreen) {
                 el.mozCancelFullScreen();
             } else if (el.webkitCancelFullScreen) {
                 el.webkitCancelFullScreen();
@@ -273,14 +285,14 @@ layui.define(["jquery", "miniMenu", "element","miniPage", "miniTheme"], function
                     tips = $(this).prop("innerHTML"),
                     isShow = $('.layuimini-tool i').attr('data-side-fold');
                 if (isShow == 0 && tips) {
-                    tips = "<ul class='layuimini-menu-left-zoom layui-nav layui-nav-tree layui-this'><li class='layui-nav-item layui-nav-itemed'>"+tips+"</li></ul>" ;
+                    tips = "<ul class='layuimini-menu-left-zoom layui-nav layui-nav-tree layui-this'><li class='layui-nav-item layui-nav-itemed'>" + tips + "</li></ul>";
                     window.openTips = layer.tips(tips, $(this), {
                         tips: [2, '#2f4056'],
                         time: 300000,
-                        skin:"popup-tips",
-                        success:function (el) {
-                            var left = $(el).position().left - 10 ;
-                            $(el).css({ left:left });
+                        skin: "popup-tips",
+                        success: function (el) {
+                            var left = $(el).position().left - 10;
+                            $(el).css({left: left});
                             element.render();
                         }
                     });
@@ -325,7 +337,7 @@ layui.define(["jquery", "miniMenu", "element","miniPage", "miniTheme"], function
             });
 
         }
-    };
+    }
 
 
     exports("miniAdmin", miniAdmin);

@@ -41,9 +41,11 @@
     }
     
     .under_main {
+        display: flex;
         height: 300px;
         margin: 0 auto;
         overflow: hidden;
+        justify-content: space-between;
     }
     
     .under_main ul {
@@ -56,18 +58,17 @@
     }
     
     .under_main ul li {
-        height: 20px;
-        line-height: 20px;
-        padding: 20px 0px;
+        height: 16px;
+        line-height: 16px;
+        padding: 16px 0px;
         font-weight: bold;
-        font-size: 20px;
+        font-size: 16px;
         overflow: hidden;
     }
     
     .under_logo {
         height: 180px;
         margin-top: 60px;
-        float: right;
     }
     
     .under_main ul li a {
@@ -76,7 +77,6 @@
     }
     
     .under_logo img {
-        width: 80%;
         padding-bottom: 10px;
         border-bottom: solid 1px white;
     }
@@ -196,19 +196,13 @@
     <div class="under">
         <div class="container">
             <div class="under_main row">
-                <div class="col-md-6 col-xs-6">
+                <div class="col-md-4 col-xs-8">
                     <ul>
                         <li>
                             <a href="http://news.henu.edu.cn/" target="_blank">新闻资讯</a>
                         </li>
                         <li>
                             <a href="http://iao.henu.edu.cn/" target="_blank">国际交流</a>
-                        </li>
-                        <li>
-                            <a href="http://www.henu.edu.cn/yxbm.htm" target="_blank">院系部门</a>
-                        </li>
-                        <li>
-                            <a href="http://www.henu.edu.cn/kxyj/kyjg.htm" target="_blank">科研机构</a>
                         </li>
                     </ul>
                     <ul>
@@ -218,20 +212,14 @@
                         <li>
                             <a href="http://rsc.henu.edu.cn/" target="_blank">师资队伍</a>
                         </li>
-                        <li>
-                            <a href="http://www.henu.edu.cn/rcpy.htm" target="_blank">人才培养</a>
-                        </li>
-                        <li>
-                            <a href="http://rsc.henu.edu.cn/rczp.htm" target="_blank">人才招聘</a>
-                        </li>
                     </ul>
                 </div>
                 <div class="under_logo col-md-4 col-xs-4">
                     <a href="http://www.henu.edu.cn/">
-                        <img src="../images/henu.png" alt="">
+                        <img class="img-responsive" src="../images/henu.png" alt="">
                     </a>
                     <p>
-                        地址：中国 河南 开封.明伦街/金明大道<br> 邮编：475001/475004 总机号码：0371—22868833
+                        地址：中国 河南 开封.明伦街/金明大道<br> 邮编：475001/475004
                     </p>
                 </div>
             </div>

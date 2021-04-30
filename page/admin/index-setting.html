@@ -1,3 +1,17 @@
+
+<style>
+    .photo-remove{
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        color: white;
+        background-color: red;
+        border-radius: 50%;
+        padding: 5px;
+    }
+
+</style>
+
 <div class="layuimini-container layuimini-page-anim">
     <div class="layuimini-main">
 
@@ -51,7 +65,27 @@
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">预览</label>
-                <img src="images/test.png" id="photo">
+                <div>
+<!--                    轮播图片-->
+                    <img src="images/test.png" id="photo" class="photo-img">
+<!--                    remove按钮-->
+                    <i class="fa fa-times photo-remove" aria-hidden="true"></i>
+<!--                    优先级选择-->
+                    <div style="width: 200px">
+                        <label class="layui-form-label">图片优先级</label>
+                        <div class="layui-input-block" >
+                            <select name="rank" lay-filter="rank">
+                                <option value=""></option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">

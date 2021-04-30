@@ -46,7 +46,7 @@
 
         table.render({
             elem: '#currentTableId',
-            url: 'api/classes.json',
+            url: 'api/studenttable.json',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -57,8 +57,7 @@
                 {type: "checkbox", width: 50},
                 {title: '操作', minWidth: 80, toolbar: '#currentTableBar', align: "center"},
                 {field: 'id', width: 80, title: 'ID', sort: true},
-                {field: 'classname', width: 280, title: '班级名'},
-                {field: 'people', width: 80, title: '人数', sort: true},
+                {field: 'username', width: 80, title: '姓名'},
                 {field: 'college', width: 280, title: '学院'},
                 {field: 'grade', title: '年级', minWidth: 150},
                 {field: 'albums', title: '相册数', minWidth: 150},

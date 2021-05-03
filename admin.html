@@ -155,9 +155,28 @@
         });
 
         $('.login-out').on("click", function () {
-            layer.msg('退出登录成功', function () {
-                window.location = 'page/admin/login.html';
-            });
+            $.ajax(
+                {
+                    type: "GET",
+                    url: "http://localhost:5000/api/Account/Logout",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success:function (message) {
+                        console.log(message);
+                        layer.msg(message.msg, function () {
+                            window.location = 'page/admin/login.html';
+                        });
+                    },
+                    error:function (message) {
+                        console.log(message.responseJSON);
+                        localStorage.setItem('userName','未登录')
+                        layer.msg('失败:'+message.responseJSON.msg, function () {
+                            window.location = 'page/admin/login.html';
+                        });
+                    }
+                }
+            );
         });
 
     });

@@ -5,33 +5,45 @@
             <label class="layui-form-label required">班级名</label>
             <div class="layui-input-block">
                 <input type="text" name="classname" lay-verify="required" lay-reqtext="班级名不能为空" placeholder="请输入班级名" value="" class="layui-input">
-                <tip>填写班级的名称，如 19-3 数据科学与大数据技术。</tip>
+                <tip>填写班级的名称，如 19-3数据科学与大数据技术。</tip>
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">人数</label>
-            <div class="layui-input-block">
-                <input type="number" name="people" placeholder="请输入班级人数" value="" class="layui-input">
-            </div>
-        </div>
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">人数</label>-->
+<!--            <div class="layui-input-block">-->
+<!--                <input type="number" name="people" placeholder="请输入班级人数" value="" class="layui-input">-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="layui-form-item">
             <label class="layui-form-label required">学院</label>
             <div class="layui-input-block">
-                <input type="text" name="collgue" lay-verify="required" lay-reqtext="学院不能为空" placeholder="请输入学院" value="" class="layui-input">
+                <select name="college" lay-verify="" id="college-select">
+                    <option value="">请选择一个学院</option>
+                </select>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">年级</label>
+            <label class="layui-form-label required">年级</label>
             <div class="layui-input-block">
-                <input type="text" name="grade" placeholder="请输入年级" value="" class="layui-input">
+                <select name="grade" lay-verify="" id="grade-select">
+                    <option value="">请选择一个年级</option>
+                </select>
             </div>
         </div>
-        <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">备注信息</label>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">专业</label>
             <div class="layui-input-block">
-                <textarea name="remark" class="layui-textarea" placeholder="请输入备注信息"></textarea>
+                <select name="major" lay-verify="" id="major-select">
+                    <option value="">请选择一个专业</option>
+                </select>
             </div>
         </div>
+<!--        <div class="layui-form-item layui-form-text">-->
+<!--            <label class="layui-form-label">备注信息</label>-->
+<!--            <div class="layui-input-block">-->
+<!--                <textarea name="remark" class="layui-textarea" placeholder="请输入备注信息"></textarea>-->
+<!--            </div>-->
+<!--        </div>-->
 
         <div class="layui-form-item">
             <div class="layui-input-block">
@@ -46,6 +58,115 @@
             layer = layui.layer,
             table = layui.table,
             $ = layui.$;
+
+
+        //学院选择
+        jq1111.ajax({
+            type: "GET",
+            crossDomain:true,
+            url: "http://localhost:5000/api/School/Colleges",
+            contentType: "application/json",
+            dataType:"json",
+            xhrFields: {
+                withCredentials: true
+            },
+            success:function (message) {
+                var colleges=message.data;
+                console.log(message);
+                colleges.forEach(function (college) {
+                    console.log(college)
+                    jq1111("#college-select").append('' +
+                        '<option value="' +
+                        college.id +
+                        '">' +
+                        college.name +
+                        '</option>' +
+                        '')
+                })
+                //再次初始化form
+                form.render();
+            },
+            error:function (message) {
+                console.log(message.responseJSON);
+                layer.msg('失败:'+message.responseJSON.message);
+            },
+        });
+
+        //年纪选择
+        jq1111.ajax({
+            type: "GET",
+            crossDomain:true,
+            url: "http://localhost:5000/api/School/Grades",
+            contentType: "application/json",
+            dataType:"json",
+            xhrFields: {
+                withCredentials: true
+            },
+            success:function (message) {
+                console.log(message)
+                var grades=message.data;
+                grades.forEach(function (grade) {
+                    jq1111("#grade-select").append('' +
+                        '<option value="' +
+                        grade.id +
+                        '">' +
+                        grade.display +
+                        '</option>' +
+                        '')
+                })
+                //再次初始化form
+                form.render();
+            },
+            error:function (message) {
+                console.log(message.responseJSON);
+                layer.msg('失败:'+message.responseJSON.message);
+            },
+        });
+
+        //专业选择
+        var collegeSelectValLast=jq1111("#college-select").val();
+        var timer = window.setInterval(function(){
+            console.log("timer")
+            if(jq1111("#college-select").val()!=collegeSelectValLast){
+                var children=jq1111("#major-select").children();
+                for (i=1;i<children.length;i++){
+                    children.eq(i).remove();
+                }
+                //专业选择
+                jq1111.ajax({
+                    type: "GET",
+                    crossDomain:true,
+                    url: "http://localhost:5000/api/School/Majors?collegeId="+jq1111("#college-select").val(),
+                    contentType: "application/json",
+                    dataType:"json",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success:function (message) {
+                        var majors=message.data;
+                        majors.forEach(function (major) {
+                            jq1111("#major-select").append('' +
+                                '<option value="' +
+                                major.id +
+                                '">' +
+                                major.name +
+                                '</option>' +
+                                '')
+                        });
+                        //再次初始化form
+                        form.render();
+                        collegeSelectValLast=jq1111("#college-select").val()
+                    },
+                    error:function (message) {
+                        console.log(message.responseJSON);
+                        layer.msg('失败:'+message.responseJSON.message);
+                    },
+                });
+            }
+        },1000);
+
+
+
 
         /**
          * 初始化表单，要加上，不然刷新部分组件可能会不加载
@@ -72,4 +193,7 @@
         });
 
     });
+
+
+
 </script>

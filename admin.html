@@ -123,14 +123,15 @@
     layui.use(['jquery', 'layer', 'miniAdmin', 'miniTongji'], function () {
         var $ = layui.jquery,
             layer = layui.layer,
-            miniAdmin = layui.miniAdmin,
-            miniTongji = layui.miniTongji;
+            miniAdmin = layui.miniAdmin
 
         var options = {
+
             headers:{
                 Authorization:"Bearer "+localStorage.getItem('token')
             },
-            iniUrl: "api/admininit.json",    // 初始化接口
+            iniUrl: "http://localhost:5000/api/Account/Menus",    // 初始化接口
+            //iniUrl: "api/admininit.json",    // 初始化接口
             clearUrl: "api/clear.json", // 缓存清理接口
             renderPageVersion: true,    // 初始化页面是否加版本号
             bgColorDefault: false,      // 主题默认配置
@@ -143,16 +144,6 @@
 
         //用户名初始化
         jq1111('#user-name-text').text(localStorage.getItem('userName'));
-
-        // 百度统计代码，只统计指定域名
-        miniTongji.render({
-            specific: true,
-            domains: [
-                '99php.cn',
-                'layuimini.99php.cn',
-                'layuimini-onepage.99php.cn',
-            ],
-        });
 
         $('.login-out').on("click", function () {
             $.ajax(

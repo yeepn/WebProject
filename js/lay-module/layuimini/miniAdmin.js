@@ -47,6 +47,9 @@ layui.define(["jquery", "miniMenu", "element", "miniPage", "miniTheme"], functio
             $.ajax({
                     type: options.method || 'get',
                     url: options.iniUrl,
+                    xhrFields: {
+                        withCredentials: true
+                    },
                     headers: options.headers || {},
                     success: function (data) {
                         if (data == null) {

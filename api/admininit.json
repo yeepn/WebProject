@@ -23,9 +23,34 @@
         },
         {
           "title": "相册管理",
-          "href": "page/student-gallery-manage.html",
           "icon": "fa fa-address-book-o",
-          "target": "_self"
+          "target": "_self",
+          "child": [
+            {
+              "title": "老的相册管理",
+              "href": "page/student-gallery-manage.html",
+              "icon": "fa fa-address-book-o",
+              "target": "_self"
+            },
+            {
+              "title": "个人相册管理",
+              "href": "page/admin/personal-album-manage.html",
+              "icon": "fa fa-address-book-o",
+              "target": "_self"
+            },
+            {
+              "title": "班级集体相册管理",
+              "href": "page/admin/group-album-manage.html",
+              "icon": "fa fa-address-book-o",
+              "target": "_self"
+            },
+            {
+              "title": "校级相册管理",
+              "href": "page/admin/school-album-manage.html",
+              "icon": "fa fa-address-book-o",
+              "target": "_self"
+            }
+          ]
         },
         {
           "title": "学生管理",

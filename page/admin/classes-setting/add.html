@@ -159,7 +159,7 @@
                     },
                     error:function (message) {
                         console.log(message.responseJSON);
-                        layer.msg('失败:'+message.responseJSON.message);
+                        collegeSelectValLast=null;
                     },
                 });
             }
@@ -178,17 +178,42 @@
 
         //监听提交
         form.on('submit(saveBtn)', function (data) {
-            var index = layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            }, function () {
+            console.log(data)
+            var postData={
+                "majorId": data.field.major,
+                "className": data.field.classname
+            }
+            console.log(postData)
+            jq1111.ajax({
+                type: "POST",
+                crossDomain:true,
+                url: "http://localhost:5000/api/School/AddClass",
+                contentType: "application/json",
+                dataType:"json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data:JSON.stringify(postData),
+                success:function (message) {
+                    console.log(message);
+                    var index = layer.alert("", {
+                        title: message.msg
+                    }, function () {
+                        // 关闭弹出层
+                        layer.close(index);
+                        layer.close(parentIndex);
 
-                // 关闭弹出层
-                layer.close(index);
-                layer.close(parentIndex);
-
+                    });
+                },
+                error:function (message) {
+                    var index = layer.alert("", {
+                        title: message.msg
+                    }, function () {
+                        // 关闭弹出层
+                        layer.close(index);
+                    });
+                },
             });
-
-
             return false;
         });
 

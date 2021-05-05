@@ -199,10 +199,13 @@
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
             var result = JSON.stringify(data.field);
-            // layer.alert(result, {
-            //     title: '最终的搜索信息'
-            // });
 
+            if(data.field.major===""||data.field.grade===""){
+                layer.alert('参数不全，请检查检索条件', {
+                    title: '参数不全，请检查检索条件'
+                });
+                return false;
+            }
             console.log(data)
             //执行搜索重载
             table.reload('currentTableId', {
@@ -236,7 +239,23 @@
             } else if (obj.event === 'delete') {  // 监听删除操作
                 var checkStatus = table.checkStatus('currentTableId')
                     , data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
+                if(data.length===0){
+                    layer.alert('未选择要删除的数据', {
+                        title: '操作不合法'
+                    });
+                    return ;
+                }
+                var deletedItemCount=0;
+                data.forEach(function (deleteData){
+                    if(deleteClass(deleteData.id)){
+                        deletedItemCount++;
+                    }
+                });
+                layer.alert('成功删除'+deletedItemCount+'个数据,'+(data.length-deletedItemCount)+'条删除失败，如果存在删除失败，请尝试刷新界面重试', {
+                    title: '操作结果'
+                });
+                table.reload('currentTableId',{}, 'data');
+                console.log(data)
             }else if(obj.event === 'setting'){ // 设置删除操作
                 var content = miniPage.getHrefContent('page/admin/classes-setting/setting.html');
                 var openWH = miniPage.getOpenWidthHeight();
@@ -285,6 +304,7 @@
                 return false;
             } else if (obj.event === 'delete') {
                 layer.confirm('真的删除行么', function (index) {
+                    console.log(data)
                     jq1111.ajax({
                         type: "POST",
                         crossDomain:true,
@@ -292,8 +312,8 @@
                         contentType: "application/json",
                         dataType:"json",
                         data:JSON.stringify({
-                            "majorId":1,
-                            "classId":1
+                            "majorId":data.grade.id,
+                            "classId":data.id
                         }),
                         xhrFields: {
                             withCredentials: true
@@ -312,6 +332,29 @@
                 });
             }
         });
+
+        function deleteClass(classId){
+            jq1111.ajax({
+                type: "POST",
+                crossDomain:true,
+                url: "http://localhost:5000/api/School/RemoveClass",
+                contentType: "application/json",
+                dataType:"json",
+                data:JSON.stringify({
+                    "classId":classId
+                }),
+                xhrFields: {
+                    withCredentials: true
+                },
+                success:function (message) {
+                    return true;
+                },
+                error:function (message) {
+                    console.log(message.responseJSON);
+                    return false;
+                },
+            });
+        }
 
     });
 </script>

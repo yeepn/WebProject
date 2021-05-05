@@ -140,92 +140,12 @@
         //专业和班级选择
         jq1111("#major-select-search").attr("disabled","disabled");
         jq1111("#class-select-search").attr("disabled","disabled");
-        //选择完学院后，更新专业
-        jq1111('#college-select-search').change(function (){
-            jq1111("#major-select-search").removeAttr("disabled");
-            var children=jq1111("#major-select-search").children();
-            for (i=1;i<children.length;i++){
-                children.eq(i).remove();
-            }
-            //专业选择
-            jq1111.ajax({
-                type: "GET",
-                crossDomain:true,
-                url: "http://localhost:5000/api/School/Majors?collegeId="+jq1111("#college-select-search").val(),
-                contentType: "application/json",
-                dataType:"json",
-                xhrFields: {
-                    withCredentials: true
-                },
-                success:function (message) {
-                    var majors=message.data;
-                    majors.forEach(function (major) {
-                        jq1111("#major-select-search").append('' +
-                            '<option value="' +
-                            major.id +
-                            '">' +
-                            major.name +
-                            '</option>' +
-                            '')
-                    });
-                    //再次初始化form
-                    form.render();
-                    collegeSelectValLast=jq1111("#college-select-search").val()
-                },
-                error:function (message) {
-                    console.log(message.responseJSON);
-                    collegeSelectValLast=null;
-                },
-            });
-        });
-        // var selectTimer = window.setInterval(function(){
-        //     console.log("selectTimer")
-        //     jq1111("#major-select-search").removeAttr("disabled");
-        //     if(jq1111("#college-select-search").val()!==collegeSelectValLast){
-        //         var children=jq1111("#major-select-search").children();
-        //         for (i=1;i<children.length;i++){
-        //             children.eq(i).remove();
-        //         }
-        //         //专业选择
-        //         jq1111.ajax({
-        //             type: "GET",
-        //             crossDomain:true,
-        //             url: "http://localhost:5000/api/School/Majors?collegeId="+jq1111("#college-select-search").val(),
-        //             contentType: "application/json",
-        //             dataType:"json",
-        //             xhrFields: {
-        //                 withCredentials: true
-        //             },
-        //             success:function (message) {
-        //                 var majors=message.data;
-        //                 majors.forEach(function (major) {
-        //                     jq1111("#major-select-search").append('' +
-        //                         '<option value="' +
-        //                         major.id +
-        //                         '">' +
-        //                         major.name +
-        //                         '</option>' +
-        //                         '')
-        //                 });
-        //                 //再次初始化form
-        //                 form.render();
-        //                 collegeSelectValLast=jq1111("#college-select-search").val()
-        //             },
-        //             error:function (message) {
-        //                 console.log(message.responseJSON);
-        //                 collegeSelectValLast=null;
-        //             },
-        //         });
-        //     }
-        // },1000);
-
-
-
-
+        jq1111("#grade-select-search").attr("disabled","disabled");
 
         table.render({
             elem: '#currentTableId',
-            // url: 'http://localhost:5000/api/Account/QueryUsers?role=学生collegeId=1&classId=3&majorId=1',
+            // 测试用，上线时把url注释掉
+            url: 'api/studenttable.json',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -304,47 +224,6 @@
             }else{
                 jq1111('#grade-select-search').removeAttr("disabled");
             }
-            // if(data.value == ""){
-            //     jq1111("#class-select-search").attr("disabled","disabled");
-            //     form.render('select');
-            // }else{
-            //     jq1111("#class-select-search").removeAttr("disabled");
-            //     //移除之前添加的班级
-            //     var children=jq1111("#class-select-search").children();
-            //     for (i=1;i<children.length;i++){
-            //         children.eq(i).remove();
-            //     }
-            //     console.log('gradeid',jq1111('#grade-select-search'))
-            //     //获取班级
-            //     jq1111.ajax({
-            //         type: "GET",
-            //         crossDomain:true,
-            //         url: 'http://localhost:5000/api/School/QueryClasses?majorId='+data.value+'&gradeId='+jq1111('#grade-select-search').val(),
-            //         contentType: "application/json",
-            //         dataType:"json",
-            //         xhrFields: {
-            //             withCredentials: true
-            //         },
-            //         success:function (message) {
-            //             var classes=message.data;
-            //             majors.forEach(function (classt) {
-            //                 jq1111("#class-select-search").append('' +
-            //                     '<option value="' +
-            //                     classt.id +
-            //                     '">' +
-            //                     classt.name +
-            //                     '</option>' +
-            //                     '')
-            //             });
-            //             //再次初始化form
-            //             form.render('select');
-            //         },
-            //         error:function (message) {
-            //             console.log(message.responseJSON);
-            //         },
-            //     });
-            //     form.render('select');//select是固定写法 不是选择器
-            // }
         });
 
         //监听年级的select事件来设置年级
@@ -467,6 +346,8 @@
 
                 var content = miniPage.getHrefContent('page/admin/student-manage/edit.html');
                 var openWH = miniPage.getOpenWidthHeight();
+                //TODO 需要一个更好的传参方法，先这样用着吧
+                localStorage.setItem('selectedUserId',data.id);
 
                 var index = layer.open({
                     title: '编辑用户',

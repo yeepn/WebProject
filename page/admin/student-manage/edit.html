@@ -15,9 +15,6 @@
     <!-- 学生信息头部 -->
     <div class="head">
         <h3><strong>学生相册信息查看与修改</strong></h3>
-        <div>
-            <button type="button" class="layui-btn">修改</button>
-        </div>
     </div>
     <!-- 分割线 -->
     <div>
@@ -25,45 +22,97 @@
     </div>
     <form action="" class="layui-form" style="margin-top: 20px;">
         <div class="layui-form-item">
-            <label class="layui-form-label">年级：</label>
+            <label class="layui-form-label">学号</label>
             <div class="layui-input-block">
-                <input type="text" name="grade" lay-verify="grade" autocomplete="off" placeholder="请输入年级" class="layui-input">
+                <input type="text" name="role" autocomplete="off" class="layui-input" value="学号" id="userName-input-text">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">学院：</label>
+            <label class="layui-form-label">姓名</label>
             <div class="layui-input-block">
-                <input type="text" name="college" lay-verify="college" autocomplete="off" placeholder="请输入学院名" class="layui-input">
+                <input type="text" name="role" autocomplete="off" class="layui-input" value="姓名" id="fullName-input-text">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">专业：</label>
+            <label class="layui-form-label">角色</label>
             <div class="layui-input-block">
-                <input type="text" name="major" lay-verify="major" autocomplete="off" placeholder="请输入专业名" class="layui-input">
+                <input type="text" name="role" autocomplete="off" class="layui-input" value="角色" id="role-input-text">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">学号：</label>
+            <label class="layui-form-label">学院</label>
             <div class="layui-input-block">
-                <input type="text" name="student_number" lay-verify="student_number" autocomplete="off" placeholder="请输入学号" class="layui-input">
+                <select name="college" lay-verify="" id="college-select" lay-filter="college-select">
+                    <option value="">请选择一个学院</option>
+                </select>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">姓名：</label>
+            <label class="layui-form-label">专业</label>
             <div class="layui-input-block">
-                <input type="text" name="name" lay-verify="name" autocomplete="off" placeholder="请输入姓名" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">毕业留言:</label>
-            <div class="layui-input-block">
-                <textarea placeholder="请输入留言内容" class="layui-textarea"></textarea>
+                <select name="major" lay-verify=""  id="major-select" lay-filter="major-select">
+                    <option value="">需要先选择学院</option>
+                </select>
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">年级</label>
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit="" lay-filter="demo1">立即修改</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                <select name="grade" lay-verify="" id="grade-select" lay-filter="grade-select">
+                    <option value="">需要先选择专业</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">班级</label>
+            <div class="layui-input-block">
+                <select name="class" lay-verify="" id="class-select" lay-filter="class-select">
+                    <option value="">需要先选择年级</option>
+                </select>
+            </div>
+        </div>
+
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">年级：</label>-->
+<!--            <div class="layui-input-block">-->
+<!--                <input type="text" name="grade" lay-verify="grade" autocomplete="off" placeholder="请输入年级" class="layui-input">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">学院：</label>-->
+<!--            <div class="layui-input-block">-->
+<!--                <input type="text" name="college" lay-verify="college" autocomplete="off" placeholder="请输入学院名" class="layui-input">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">专业：</label>-->
+<!--            <div class="layui-input-block">-->
+<!--                <input type="text" name="major" lay-verify="major" autocomplete="off" placeholder="请输入专业名" class="layui-input">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">学号：</label>-->
+<!--            <div class="layui-input-block">-->
+<!--                <input type="text" name="student_number" lay-verify="student_number" autocomplete="off" placeholder="请输入学号" class="layui-input">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">姓名：</label>-->
+<!--            <div class="layui-input-block">-->
+<!--                <input type="text" name="name" lay-verify="name" autocomplete="off" placeholder="请输入姓名" class="layui-input">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="layui-form-item layui-form-text">-->
+<!--            <label class="layui-form-label">毕业留言:</label>-->
+<!--            <div class="layui-input-block">-->
+<!--                <textarea placeholder="请输入留言内容" class="layui-textarea"></textarea>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="save">立即修改</button>
+<!--                <button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
             </div>
         </div>
     </form>
@@ -96,6 +145,294 @@
          * 初始化表单，要加上，不然刷新部分组件可能会不加载
          */
         form.render();
+
+
+
+        //学生信息初始化
+        //不允许修改部分内容
+        jq1111('#role-input-text').attr("disabled","disabled");
+        jq1111('#userName-input-text').attr("disabled","disabled");
+        jq1111('#fullName-input-text').attr("disabled","disabled");
+
+        //定义变量
+        var userId=localStorage.getItem('selectedUserId');
+        var userData;
+        //获取学生信息
+        jq1111.ajax({
+            type: "GET",
+            async:false,
+            crossDomain:true,
+            url: "http://localhost:5000/api/Account/"+userId,
+            contentType: "application/json",
+            xhrFields: {
+                withCredentials: true
+            },
+            success:function (message) {
+                console.log(message);
+                userData=message.data;
+                layer.msg(message.msg, function () {
+                });
+            },
+            error:function (message) {
+                console.log(message.responseJSON);
+                layer.msg('失败:'+message.responseJSON.msg);
+            },
+        });
+        //给表单赋值
+        //学号 姓名 角色 赋初值
+        jq1111('#userName-input-text').val(userData.userName);
+        jq1111('#fullName-input-text').val(userData.fullName);
+        jq1111('#role-input-text').val(function (){
+            var result="";
+            var roles= userData.roles;
+            roles.forEach(function (role) {
+                result+=role;
+                result+=" ";
+            })
+            return result;
+        });
+
+        //获取学院
+        jq1111.ajax({
+            type: "GET",
+            async:false,
+            crossDomain:true,
+            url: "http://localhost:5000/api/School/Colleges",
+            contentType: "application/json",
+            dataType:"json",
+            xhrFields: {
+                withCredentials: true
+            },
+            success:function (message) {
+                var colleges=message.data;
+                console.log(message);
+                colleges.forEach(function (college) {
+                    console.log(college)
+                    jq1111("#college-select").append('' +
+                        '<option value="' +
+                        college.id +
+                        '">' +
+                        college.name +
+                        '</option>' +
+                        '')
+                })
+                //再次初始化form
+                form.render();
+            },
+            error:function (message) {
+                console.log(message.responseJSON);
+                layer.msg('失败:'+message.responseJSON.message);
+            },
+        });
+        console.log('userdata',userData)
+        jq1111("#college-select").val(userData.college.id);
+        form.render();
+        //获取年级
+        jq1111.ajax({
+            type: "GET",
+            async:false,
+            crossDomain:true,
+            url: "http://localhost:5000/api/School/Grades",
+            contentType: "application/json",
+            dataType:"json",
+            xhrFields: {
+                withCredentials: true
+            },
+            success:function (message) {
+                console.log(message)
+                var grades=message.data;
+                grades.forEach(function (grade) {
+                    jq1111("#grade-select").append('' +
+                        '<option value="' +
+                        grade.id +
+                        '">' +
+                        grade.display +
+                        '</option>' +
+                        '')
+                })
+                //再次初始化form
+                form.render();
+            },
+            error:function (message) {
+                console.log(message.responseJSON);
+                layer.msg('失败:'+message.responseJSON.message);
+            },
+        });
+        jq1111("#grade-select").val(userData.grade.id);
+        //获取专业
+        jq1111.ajax({
+            type: "GET",
+            async:false,
+            crossDomain:true,
+            url: "http://localhost:5000/api/School/Majors?collegeId="+userData.major.id,
+            contentType: "application/json",
+            dataType:"json",
+            xhrFields: {
+                withCredentials: true
+            },
+            success:function (message) {
+                var majors=message.data;
+                majors.forEach(function (major) {
+                    jq1111("#major-select").append('' +
+                        '<option value="' +
+                        major.id +
+                        '">' +
+                        major.name +
+                        '</option>' +
+                        '')
+                });
+                //再次初始化form
+                jq1111("#major-select").val(userData.major.id);
+                form.render('select');
+            },
+            error:function (message) {
+                console.log(message.responseJSON);
+            },
+        });
+        //获取班级
+        jq1111.ajax({
+            type: "GET",
+            async:false,
+            crossDomain:true,
+            url: 'http://localhost:5000/api/School/QueryClasses?majorId='+jq1111('#major-select').val()+'&gradeId='+jq1111('#grade-select').val(),
+            contentType: "application/json",
+            dataType:"json",
+            xhrFields: {
+                withCredentials: true
+            },
+            success:function (message) {
+                var classes=message.data;
+                classes.forEach(function (classt) {
+                    jq1111("#class-select").append('' +
+                        '<option value="' +
+                        classt.id +
+                        '">' +
+                        classt.name +
+                        '</option>' +
+                        '')
+                });
+                //再次初始化form
+                jq1111("#class-select").val(userData.class.id);
+                form.render('select');
+            },
+            error:function (message) {
+                console.log(message.responseJSON);
+            },
+        });
+
+
+        //监听学院的select事件来获取专业
+        form.on('select(college-select)', function(data){
+            console.log(data)
+            if(data.value == ""){
+                jq1111("#major-select").attr("disabled","disabled");
+                jq1111("#class-select").attr("disabled","disabled");
+
+                form.render('select');
+            }else{
+                jq1111("#major-select").removeAttr("disabled");
+                //移除之前添加的专业
+                var children=jq1111("#major-select").children();
+                for (i=1;i<children.length;i++){
+                    children.eq(i).remove();
+                }
+                //获取专业
+                jq1111.ajax({
+                    type: "GET",
+                    async:false,
+                    crossDomain:true,
+                    url: "http://localhost:5000/api/School/Majors?collegeId="+data.value,
+                    contentType: "application/json",
+                    dataType:"json",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success:function (message) {
+                        var majors=message.data;
+                        majors.forEach(function (major) {
+                            jq1111("#major-select").append('' +
+                                '<option value="' +
+                                major.id +
+                                '">' +
+                                major.name +
+                                '</option>' +
+                                '')
+                        });
+                        //再次初始化form
+                        jq1111("#major-select").val(userData.major.id);
+                        form.render('select');
+                    },
+                    error:function (message) {
+                        console.log(message.responseJSON);
+                    },
+                });
+                jq1111("#major-select").val(userData.major.id);
+                form.render('select');//select是固定写法 不是选择器
+            }
+        });
+
+        //监听专业的select事件来设置年级
+        form.on('select(major-select)', function(data){
+            console.log(data)
+            if(data.value == ""){
+                jq1111('#grade-select').attr("disabled","disabled");
+                form.render('select');
+            }else{
+                jq1111('#grade-select').removeAttr("disabled");
+            }
+        });
+
+        //监听年级的select事件来设置班级
+        form.on('select(grade-select)', function(data){
+            console.log(data)
+            if(data.value == ""){
+                jq1111('#class-select').attr("disabled","disabled");
+                form.render('select');
+            }else{
+                jq1111('#class-select').removeAttr("disabled");
+                //移除之前添加的班级
+                var children=jq1111("#class-select").children();
+                for (i=1;i<children.length;i++){
+                    children.eq(i).remove();
+                }
+                console.log('gradeid',jq1111('#grade-select-search'))
+                //获取班级
+                jq1111.ajax({
+                    type: "GET",
+                    async:false,
+                    crossDomain:true,
+                    url: 'http://localhost:5000/api/School/QueryClasses?majorId='+jq1111('#major-select').val()+'&gradeId='+jq1111('#grade-select').val(),
+                    contentType: "application/json",
+                    dataType:"json",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success:function (message) {
+                        var classes=message.data;
+                        classes.forEach(function (classt) {
+                            jq1111("#class-select").append('' +
+                                '<option value="' +
+                                classt.id +
+                                '">' +
+                                classt.name +
+                                '</option>' +
+                                '')
+                        });
+                        //再次初始化form
+                        jq1111("#class-select").val(userData.class.id);
+                        form.render('select');
+                    },
+                    error:function (message) {
+                        console.log(message.responseJSON);
+                    },
+                });
+                form.render('select');//select是固定写法 不是选择器
+            }
+
+        });
+        jq1111("#class-select").val(userData.class.id);
+        form.render('select');//select是固定写法 不是选择器
+
 
         //日期
         laydate.render({
@@ -132,10 +469,32 @@
         });
 
         //监听提交
-        form.on('submit(demo1)', function(data) {
-            layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            })
+        form.on('submit(save)', function(data) {
+            jq1111.ajax({
+                type: "POST",
+                crossDomain:true,
+                url: "http://localhost:5000/api/Account/UpdateStudentInfo",
+                contentType: "application/json",
+                dataType:"json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data:JSON.stringify(
+                    {
+                        "classId":jq1111('#class-select').val(),
+                        "userId": userId
+                    }
+                ),
+                success:function (message) {
+                    console.log(message);
+                    layer.msg(message.msg, function () {
+                    });
+                },
+                error:function (message) {
+                    console.log(message.responseJSON);
+                    layer.msg('失败:'+message.responseJSON.msg);
+                },
+            });
             return false;
         });
 

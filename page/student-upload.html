@@ -5,134 +5,158 @@
         <blockquote class="layui-elem-quote">
             这里是一个系统通知，可在后台进行设定
         </blockquote>
-        <div id="zyupload" class="zyupload"></div>
-        <form class="layui-form">
+<!--        <div id="photoUpload" class="photoUpload"></div>-->
+        <form class="layui-form" action="">
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
                 <legend>相册信息</legend>
             </fieldset>
-            <div class="layui-inline">
-                <label class="layui-form-label">拍摄日期</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="date" id="date" lay-verify="date" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">拍摄地点</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入拍摄地点" class="layui-input">
-                </div>
-            </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">标题</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入班级人数" class="layui-input">
+                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入相册标题"
+                           class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">说明</label>
-                <div class="layui-input-inline">
-                    <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                <label class="layui-form-label">简介</label>
+                <div class="layui-input-block">
+                    <textarea name="describe" autocomplete="off" placeholder="请输入相册简介" class="layui-input"></textarea>
+<!--                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入拍摄地点"-->
+<!--                           class="layui-input">-->
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">参与人数</label>
-                <div class="layui-input-inline">
-                    <input type="number" name="title" lay-verify="title" autocomplete="off" placeholder="请输入参与拍摄人数" class="layui-input">
+                <label class="layui-form-label">是否公开</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="isPublic" lay-skin="switch" lay-text="是|否">
                 </div>
             </div>
 
-            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                <legend>附件上传</legend>
-            </fieldset>
-            <div id="fileupload" class="zyupload"></div>
-            <button class="layui-btn number-of-people-btn" type="button">保存</button>
+            <!--            <div class="layui-inline">-->
+            <!--                <label class="layui-form-label">拍摄日期</label>-->
+            <!--                <div class="layui-input-inline">-->
+            <!--                    <input type="text" name="date" id="date" lay-verify="date" autocomplete="off" class="layui-input">-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <div class="layui-form-item">-->
+            <!--                <label class="layui-form-label">拍摄地点</label>-->
+            <!--                <div class="layui-input-inline">-->
+            <!--                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入拍摄地点" class="layui-input">-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <div class="layui-form-item">-->
+            <!--                <label class="layui-form-label">标题</label>-->
+            <!--                <div class="layui-input-inline">-->
+            <!--                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入班级人数" class="layui-input">-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <div class="layui-form-item">-->
+            <!--                <label class="layui-form-label">说明</label>-->
+            <!--                <div class="layui-input-inline">-->
+            <!--                    <textarea placeholder="请输入内容" class="layui-textarea"></textarea>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <div class="layui-form-item">-->
+            <!--                <label class="layui-form-label">参与人数</label>-->
+            <!--                <div class="layui-input-inline">-->
+            <!--                    <input type="number" name="title" lay-verify="title" autocomplete="off" placeholder="请输入参与拍摄人数" class="layui-input">-->
+            <!--                </div>-->
+            <!--            </div>-->
+
+            <!--            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">-->
+            <!--                <legend>附件上传</legend>-->
+            <!--            </fieldset>-->
+            <!--            <div id="fileupload" class="fileUpload"></div>-->
+            <center>
+                <button class="layui-btn number-of-people-btn" lay-submit="" lay-filter="save">保存</button>
+            </center>
         </form>
     </div>
 </div>
 <script src="lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
 <script src="lib/jq-module/zyupload/zyupload-1.0.0.min.js" charset="utf-8"></script>
 <script type="text/javascript">
-    $(function () {
-        // 初始化插件
-        $("#zyupload").zyUpload({
-            width: "80vw",                 // 宽度
-            height: "300px",                 // 宽度
-            itemWidth: "140px",                 // 文件项的宽度
-            itemHeight: "115px",                 // 文件项的高度
-            url: "api/upload",  // 上传文件的路径
-            fileType: ["jpg", "png", "txt", "js","jpeg"],// 上传文件的类型
-            fileSize: 51200000,                // 上传文件的大小
-            multiple: true,                    // 是否可以多个文件上传
-            dragDrop: true,                    // 是否可以拖动上传文件
-            tailor: true,                    // 是否可以裁剪图片
-            del: true,                    // 是否可以删除文件
-            finishDel: false,  				  // 是否在上传文件完成后删除预览
-            /* 外部获得的回调接口 */
-            onSelect: function (selectFiles, allFiles) {    // 选择文件的回调方法  selectFile:当前选中的文件  allFiles:还没上传的全部文件
-                console.info("当前选择了以下文件：");
-                console.info(selectFiles);
-            },
-            onDelete: function (file, files) {              // 删除一个文件的回调方法 file:当前删除的文件  files:删除之后的文件
-                console.info("当前删除了此文件：");
-                console.info(file.name);
-            },
-            onSuccess: function (file, response) {          // 文件上传成功的回调方法
-                console.info("此文件上传成功：");
-                console.info(file.name);
-                console.info("此文件上传到服务器地址：");
-                console.info(response);
-                $("#uploadInf").append("<p>上传成功，文件地址是：" + response + "</p>");
-            },
-            onFailure: function (file, response) {          // 文件上传失败的回调方法
-                console.info("此文件上传失败：");
-                console.info(file.name);
-            },
-            onComplete: function (response) {           	  // 上传完成的回调方法
-                console.info("文件上传完成");
-                console.info(response);
-            }
-        });
-
-        $("#fileupload").zyUpload({
-            width: "80vw",                 // 宽度
-            height: "300px",                 // 宽度
-            itemWidth: "140px",                 // 文件项的宽度
-            itemHeight: "115px",                 // 文件项的高度
-            url: "api/upload",  // 上传文件的路径
-            fileType: ["jpg", "png", "txt", "js","jpeg"],// 上传文件的类型
-            fileSize: 51200000,                // 上传文件的大小
-            multiple: true,                    // 是否可以多个文件上传
-            dragDrop: true,                    // 是否可以拖动上传文件
-            tailor: true,                    // 是否可以裁剪图片
-            del: true,                    // 是否可以删除文件
-            finishDel: false,  				  // 是否在上传文件完成后删除预览
-            /* 外部获得的回调接口 */
-            onSelect: function (selectFiles, allFiles) {    // 选择文件的回调方法  selectFile:当前选中的文件  allFiles:还没上传的全部文件
-                console.info("当前选择了以下文件：");
-                console.info(selectFiles);
-            },
-            onDelete: function (file, files) {              // 删除一个文件的回调方法 file:当前删除的文件  files:删除之后的文件
-                console.info("当前删除了此文件：");
-                console.info(file.name);
-            },
-            onSuccess: function (file, response) {          // 文件上传成功的回调方法
-                console.info("此文件上传成功：");
-                console.info(file.name);
-                console.info("此文件上传到服务器地址：");
-                console.info(response);
-                $("#uploadInf").append("<p>上传成功，文件地址是：" + response + "</p>");
-            },
-            onFailure: function (file, response) {          // 文件上传失败的回调方法
-                console.info("此文件上传失败：");
-                console.info(file.name);
-            },
-            onComplete: function (response) {           	  // 上传完成的回调方法
-                console.info("文件上传完成");
-                console.info(response);
-            }
-        });
-
-    });
+    // $(function () {
+        // 初始化插件1
+    //     $("#photoUpload").zyUpload({
+    //         width: "80vw",                 // 宽度
+    //         height: "300px",                 // 宽度
+    //         itemWidth: "140px",                 // 文件项的宽度
+    //         itemHeight: "115px",                 // 文件项的高度
+    //         url: "api/upload",  // 上传文件的路径
+    //         fileType: ["jpg", "png", "txt", "js", "jpeg"],// 上传文件的类型
+    //         fileSize: 51200000,                // 上传文件的大小
+    //         multiple: true,                    // 是否可以多个文件上传
+    //         dragDrop: true,                    // 是否可以拖动上传文件
+    //         tailor: true,                    // 是否可以裁剪图片
+    //         del: true,                    // 是否可以删除文件
+    //         finishDel: false,  				  // 是否在上传文件完成后删除预览
+    //         /* 外部获得的回调接口 */
+    //         onSelect: function (selectFiles, allFiles) {    // 选择文件的回调方法  selectFile:当前选中的文件  allFiles:还没上传的全部文件
+    //             console.info("当前选择了以下文件：");
+    //             console.info(selectFiles);
+    //         },
+    //         onDelete: function (file, files) {              // 删除一个文件的回调方法 file:当前删除的文件  files:删除之后的文件
+    //             console.info("当前删除了此文件：");
+    //             console.info(file.name);
+    //         },
+    //         onSuccess: function (file, response) {          // 文件上传成功的回调方法
+    //             console.info("此文件上传成功：");
+    //             console.info(file.name);
+    //             console.info("此文件上传到服务器地址：");
+    //             console.info(response);
+    //             $("#uploadInf").append("<p>上传成功，文件地址是：" + response + "</p>");
+    //         },
+    //         onFailure: function (file, response) {          // 文件上传失败的回调方法
+    //             console.info("此文件上传失败：");
+    //             console.info(file.name);
+    //         },
+    //         onComplete: function (response) {           	  // 上传完成的回调方法
+    //             console.info("文件上传完成");
+    //             console.info(response);
+    //         }
+    //     });
+    // });
+    // $(function (){
+    //     $("#fileUpload").zyUpload({
+    //         width: "80vw",                 // 宽度
+    //         height: "300px",                 // 宽度
+    //         itemWidth: "140px",                 // 文件项的宽度
+    //         itemHeight: "115px",                 // 文件项的高度
+    //         url: "api/upload",  // 上传文件的路径
+    //         fileType: ["jpg", "png", "txt", "js","jpeg"],// 上传文件的类型
+    //         fileSize: 51200000,                // 上传文件的大小
+    //         multiple: true,                    // 是否可以多个文件上传
+    //         dragDrop: true,                    // 是否可以拖动上传文件
+    //         tailor: true,                    // 是否可以裁剪图片
+    //         del: true,                    // 是否可以删除文件
+    //         finishDel: false,  				  // 是否在上传文件完成后删除预览
+    //         /* 外部获得的回调接口 */
+    //         onSelect: function (selectFiles, allFiles) {    // 选择文件的回调方法  selectFile:当前选中的文件  allFiles:还没上传的全部文件
+    //             console.info("当前选择了以下文件：");
+    //             console.info(selectFiles);
+    //         },
+    //         onDelete: function (file, files) {              // 删除一个文件的回调方法 file:当前删除的文件  files:删除之后的文件
+    //             console.info("当前删除了此文件：");
+    //             console.info(file.name);
+    //         },
+    //         onSuccess: function (file, response) {          // 文件上传成功的回调方法
+    //             console.info("此文件上传成功：");
+    //             console.info(file.name);
+    //             console.info("此文件上传到服务器地址：");
+    //             console.info(response);
+    //             $("#uploadInf").append("<p>上传成功，文件地址是：" + response + "</p>");
+    //         },
+    //         onFailure: function (file, response) {          // 文件上传失败的回调方法
+    //             console.info("此文件上传失败：");
+    //             console.info(file.name);
+    //         },
+    //         onComplete: function (response) {           	  // 上传完成的回调方法
+    //             console.info("文件上传完成");
+    //             console.info(response);
+    //         }
+    //     });
+    // })
 
     layui.use(['form', 'layedit', 'laydate'], function () {
         var form = layui.form
@@ -160,7 +184,7 @@
         form.verify({
             title: function (value) {
                 if (value.length < 5) {
-                    return '标题至少得5个字符啊';
+                    return '至少得5个字符啊';
                 }
             }
             , pass: [
@@ -181,10 +205,39 @@
         });
 
         //监听提交
-        form.on('submit(demo1)', function (data) {
-            layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            })
+        form.on('submit(save)', function (data) {
+            var isPub=true;
+            if(data.field.isPublic==='off'){
+                isPub=false;
+            }
+            jq1111.ajax({
+                type: "POST",
+                crossDomain:true,
+                url: "http://localhost:5000/api/PersonalAlbum/Add",
+                contentType: "application/json",
+                dataType:"json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data:JSON.stringify({
+                    "title": data.field.title,
+                    "description": data.field.describe,
+                    "isPublic": isPub
+                }),
+                success:function (message) {
+                    console.log(message);
+                    layer.alert(message.msg, {
+                        title: '操作结果'
+                    })
+                },
+                error:function (message) {
+                    console.log(message.responseJSON);
+                    layer.alert(message.responseJSON.msg, {
+                        title: '操作结果'
+                    })
+                },
+            });
+
             return false;
         });
     });

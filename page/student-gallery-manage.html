@@ -2,8 +2,8 @@
     <div class="layuimini-main">
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>
+                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 创建相册 </button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除所选相册 </button>
             </div>
         </script>
         <table class="layui-hide" id="currentTableId2" lay-filter="currentTableFilter2"></table>
@@ -26,7 +26,7 @@
 
         table.render({
             elem: '#currentTableId2',
-            url: 'api/gallerytable.json',
+            url: 'http://localhost:5000/api/PersonalAlbum/',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -37,11 +37,12 @@
                 {type: "checkbox", width: 50},
                 {title: '操作', minWidth: 120, toolbar: '#currentTableBar2', align: "center"},
                 {field: 'id', width: 80, title: 'ID', sort: true},
-                {field: 'name', width: 80, title: '标题', sort: true},
-                {field: 'detail', width: 280, title: '描述'},
-                {field: 'singns', title: '标签', minWidth: 150},
-                {field: 'albums', title: '相册数', minWidth: 150},
-                {field: 'views', width: 135, title: '点击量', sort: true}
+                {field: 'title', width: 80, title: '标题', sort: true},
+                {field: 'description', width: 280, title: '描述'},
+                {field: 'isPublic', width: 80, title: '是否公开'},
+                // {field: 'singns', title: '标签', minWidth: 150},
+                // {field: 'albums', title: '相册数', minWidth: 150},
+                // {field: 'views', width: 135, title: '点击量', sort: true}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 15,

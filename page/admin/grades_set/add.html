@@ -1,0 +1,69 @@
+<div class="layuimini-main">
+    <!-- 年级添加头部 -->
+    <div class="head">
+        <h2><strong>年级相册信息管理</strong></h2>
+    </div>
+    <!-- 分割线 -->
+    <div>
+        <hr class="layui-border-black">
+    </div>
+    <div class="layui-form layuimini-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label required">年级</label>
+            <div class="layui-input-block">
+                <select name="grade" lay-verify="" id="grade-select">
+                    <option value="">请选择一个年级</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label required">总人数:</label>
+            <div class="layui-input-block">
+                <input type="text" name="people_count" lay-verify="required" lay-reqtext="总人数不能为空" placeholder="请输入总人数" value="" class="layui-input">
+                <tip></tip>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注信息</label>
+            <div class="layui-input-block">
+                <textarea name="remark" class="layui-textarea" placeholder="请输入备注信息"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['form', 'table'], function() {
+        var form = layui.form,
+            layer = layui.layer,
+            table = layui.table,
+            $ = layui.$;
+
+        /**
+         * 初始化表单，要加上，不然刷新部分组件可能会不加载
+         */
+        form.render();
+
+        // 当前弹出层，防止ID被覆盖
+        var parentIndex = layer.index;
+
+        //监听提交
+        form.on('submit(saveBtn)', function(data) {
+            var index = layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            }, function() {
+
+                // 关闭弹出层
+                layer.close(index);
+                layer.close(parentIndex);
+
+            });
+            return false;
+        });
+
+    });
+</script>

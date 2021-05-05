@@ -73,14 +73,13 @@
     </div>
     <!-- 学生相册信息 -->
     <h3><strong>学生相册信息查看与修改</strong></h3>
-    <script type="text/html" id="toolbarDemo">
+    <script type="text/html" id="toolbarDemo1">
         <div class="layui-btn-container">
         </div>
     </script>
 
-    <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
-
-    <script type="text/html" id="currentTableBar">
+    <table class="layui-hide" id="currentTableId1" lay-filter="currentTableFilter1"></table>
+    <script type="text/html" id="currentTableBar1">
         <a class="layui-btn layui-btn-normal layui-btn-xs" href="#">查看</a>
         <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
     </script>
@@ -162,9 +161,9 @@
             miniPage = layui.miniPage;
 
         table.render({
-            elem: '#currentTableId',
+            elem: '#currentTableId1',
             url: 'api/edit.json',
-            toolbar: '#toolbarDemo',
+            toolbar: '#toolbarDemo1',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
                 layEvent: 'LAYTABLE_TIPS',
@@ -194,7 +193,7 @@
                 }, {
                     title: '操作',
                     minWidth: 150,
-                    toolbar: '#currentTableBar',
+                    toolbar: '#currentTableBar1',
                     align: "center"
                 }]
             ],
@@ -212,7 +211,7 @@
             });
 
             //执行搜索重载
-            table.reload('currentTableId', {
+            table.reload('currentTableId1', {
                 page: {
                     curr: 1
                 },
@@ -227,7 +226,7 @@
         /**
          * toolbar事件监听
          */
-        table.on('toolbar(currentTableFilter)', function(obj) {
+        table.on('toolbar(currentTableFilter1)', function(obj) {
             if (obj.event === 'add') { // 监听添加操作
                 var content = miniPage.getHrefContent('page/table/add.html');
                 var openWH = miniPage.getOpenWidthHeight();
@@ -246,18 +245,18 @@
                     layer.full(index);
                 });
             } else if (obj.event === 'delete') { // 监听删除操作
-                var checkStatus = table.checkStatus('currentTableId'),
+                var checkStatus = table.checkStatus('currentTableId1'),
                     data = checkStatus.data;
                 layer.alert(JSON.stringify(data));
             }
         });
 
         //监听表格复选框选择
-        table.on('checkbox(currentTableFilter)', function(obj) {
+        table.on('checkbox(currentTableFilter1)', function(obj) {
             console.log(obj)
         });
 
-        table.on('tool(currentTableFilter)', function(obj) {
+        table.on('tool(currentTableFilter1)', function(obj) {
             var data = obj.data;
             if (obj.event === 'edit') {
 

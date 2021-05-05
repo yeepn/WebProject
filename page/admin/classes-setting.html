@@ -9,7 +9,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">年级</label>
                             <div class="layui-input-inline">
-                                <select name="grade" lay-verify="" id="grade-select">
+                                <select name="grade" lay-verify="" id="grade-select-search">
                                     <option value="">请选择一个年级</option>
                                 </select>
                             </div>
@@ -17,7 +17,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">学院</label>
                             <div class="layui-input-inline">
-                                <select name="college" lay-verify="" id="college-select">
+                                <select name="college" lay-verify="" id="college-select-search">
                                     <option value="">请选择一个学院</option>
                                 </select>
                             </div>
@@ -25,7 +25,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">专业</label>
                             <div class="layui-input-inline">
-                                <select name="major" lay-verify="" id="major-select">
+                                <select name="major" lay-verify="" id="major-select-search">
                                     <option value="">需要先选择学院</option>
                                 </select>
                             </div>
@@ -77,7 +77,7 @@
                 console.log(message);
                 colleges.forEach(function (college) {
                     console.log(college)
-                    jq1111("#college-select").append('' +
+                    jq1111("#college-select-search").append('' +
                         '<option value="' +
                         college.id +
                         '">' +
@@ -108,7 +108,7 @@
                 console.log(message)
                 var grades=message.data;
                 grades.forEach(function (grade) {
-                    jq1111("#grade-select").append('' +
+                    jq1111("#grade-select-search").append('' +
                         '<option value="' +
                         grade.id +
                         '">' +
@@ -126,13 +126,13 @@
         });
 
         //专业选择
-        var collegeSelectValLast=jq1111("#college-select").val();
-        jq1111("#major-select").attr("disabled","disabled")
+        var collegeSelectValLast=jq1111("#college-select-search").val();
+        jq1111("#major-select-search").attr("disabled","disabled")
         var timer = window.setInterval(function(){
             console.log("timer")
-            jq1111("#major-select").removeAttr("disabled");
-            if(jq1111("#college-select").val()!=collegeSelectValLast){
-                var children=jq1111("#major-select").children();
+            jq1111("#major-select-search").removeAttr("disabled");
+            if(jq1111("#college-select-search").val()!==collegeSelectValLast){
+                var children=jq1111("#major-select-search").children();
                 for (i=1;i<children.length;i++){
                     children.eq(i).remove();
                 }
@@ -140,7 +140,7 @@
                 jq1111.ajax({
                     type: "GET",
                     crossDomain:true,
-                    url: "http://localhost:5000/api/School/Majors?collegeId="+jq1111("#college-select").val(),
+                    url: "http://localhost:5000/api/School/Majors?collegeId="+jq1111("#college-select-search").val(),
                     contentType: "application/json",
                     dataType:"json",
                     xhrFields: {
@@ -149,7 +149,7 @@
                     success:function (message) {
                         var majors=message.data;
                         majors.forEach(function (major) {
-                            jq1111("#major-select").append('' +
+                            jq1111("#major-select-search").append('' +
                                 '<option value="' +
                                 major.id +
                                 '">' +
@@ -159,7 +159,7 @@
                         });
                         //再次初始化form
                         form.render();
-                        collegeSelectValLast=jq1111("#college-select").val()
+                        collegeSelectValLast=jq1111("#college-select-search").val()
                     },
                     error:function (message) {
                         console.log(message.responseJSON);
@@ -184,15 +184,15 @@
                 {type: "checkbox", width: 50},
                 {field: 'id', width: 80, title: 'ID', sort: true},
                 {field: 'name', width: 200, title: '班级名'},
-                {field: 'people', width: 80, title: '人数', sort: true},
-                {field: 'college', width: 200, title: '学院'},
-                {field: 'grade', title: '年级', minWidth: 150},
-                {field: 'albums', title: '相册数', minWidth: 150},
+                {field: 'studentCount', width: 80, title: '人数', sort: true},
+                // {field: 'college', width: 200, title: '学院'},
+                // {field: 'grade.display', title: '年级', minWidth: 150},
+                {field: 'albumCount', title: '相册数', minWidth: 150},
                 {title: '操作', minWidth: 180, toolbar: '#currentTableBar', align: "center"}
             ]],
-            limits: [10, 15, 20, 25, 50, 100],
-            limit: 15,
-            page: true,
+            // limits: [10, 15, 20, 25, 50, 100],
+            // limit: 15,
+            // page: true,
             skin: 'line'
         });
 
@@ -206,7 +206,7 @@
             console.log(data)
             //执行搜索重载
             table.reload('currentTableId', {
-                url: 'http://localhost:5000/api/School/Classes?majorId='+data.field.major,
+                url: 'http://localhost:5000/api/School/QueryClasses?majorId='+data.field.major+'&gradeId='+data.field.grade,
             }, 'data');
 
             return false;

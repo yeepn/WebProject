@@ -126,7 +126,7 @@
         //专业选择
         var collegeSelectValLast=jq1111("#college-select").val();
         var timer = window.setInterval(function(){
-            console.log("timer")
+            console.log("timer add")
             if(jq1111("#college-select").val()!=collegeSelectValLast){
                 var children=jq1111("#major-select").children();
                 for (i=1;i<children.length;i++){
@@ -181,6 +181,7 @@
             console.log(data)
             var postData={
                 "majorId": data.field.major,
+                "gradeId":data.field.grade,
                 "className": data.field.classname
             }
             console.log(postData)
@@ -196,7 +197,7 @@
                 data:JSON.stringify(postData),
                 success:function (message) {
                     console.log(message);
-                    var index = layer.alert("", {
+                    var index = layer.alert(message.msg, {
                         title: message.msg
                     }, function () {
                         // 关闭弹出层
@@ -206,8 +207,8 @@
                     });
                 },
                 error:function (message) {
-                    var index = layer.alert("", {
-                        title: message.msg
+                    var index = layer.alert(message.responseJSON.msg, {
+                        title: message.responseJSON.msg
                     }, function () {
                         // 关闭弹出层
                         layer.close(index);

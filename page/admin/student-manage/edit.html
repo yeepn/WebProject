@@ -511,6 +511,7 @@
             "desc": "我爱 layui"
         })
     });
+
     // 学生相册信息表
     layui.use(['form', 'table', 'miniPage', 'element'], function() {
         var $ = layui.jquery,
@@ -518,9 +519,13 @@
             table = layui.table,
             miniPage = layui.miniPage;
 
+        var userId=localStorage.getItem('selectedUserId');
+
         table.render({
             elem: '#currentTableId1',
-            url: 'api/edit.json',
+            //TODO 暂时没数据来测试，有数据了再调试bug
+            url:'http://localhost:5000/api/PersonalAlbum/GetByCreatorId?creatorId='+userId,
+            // url: 'api/edit.json',
             toolbar: '#toolbarDemo1',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',

@@ -16,27 +16,28 @@
 </style>
 <div class="layuimini-container layuimini-page-anim">
     <div class="layuimini-main">
-        <form class="layui-form" action="">
+        <form class="layui-form" action="" lay-filter="albumEdit">
+<!--            TODO 暂时没有修改接口-->
             <label class="layui-form-label">相册标题</label>
             <div class="layui-input-block">
                 <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
             </div>
             <label class="layui-form-label">相册简介</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                <textarea placeholder="请输入内容" class="layui-textarea" name="description" lay-filter="description"></textarea>
             </div>
-            <label class="layui-form-label">图片</label>
+            <label class="layui-form-label">相册资源</label>
             <div class="photo-body">
                 <img src="images/galleryTest/mm1.jpg">
                 <i class="fa fa-times photo-remove" aria-hidden="true"></i>
             </div>
             <label class="layui-form-label">是否公开</label>
             <div class="layui-input-block">
-                <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest"
+                <input type="checkbox" checked="" name="isPublic" lay-skin="switch" lay-filter="isPublic"
                        lay-text="是|否">
             </div>
             <center>
-                <button class="layui-btn" lay-submit="" lay-filter="demo2" style="margin: 0 auto">保存</button>
+                <button class="layui-btn" lay-submit="" lay-filter="save" style="margin: 0 auto">保存</button>
             </center>
         </form>
     </div>
@@ -48,17 +49,75 @@
             , layedit = layui.layedit
             , laydate = layui.laydate;
 
+        //数据获取，表单赋初值
+        //定义变量
+        var albumId=localStorage.getItem('selectedAlbumId');
+        var albumData;
+        //获取相册信息
+        jq1111.ajax({
+            type: "GET",
+            async:false,
+            crossDomain:true,
+            url: "http://localhost:5000/api/PersonalAlbum/"+albumId,
+            contentType: "application/json",
+            xhrFields: {
+                withCredentials: true
+            },
+            success:function (message) {
+                console.log(message);
+                albumData=message.data;
+                layer.msg(message.msg, function () {
+                });
+            },
+            error:function (message) {
+                console.log(message.responseJSON);
+                layer.msg('失败:'+message.responseJSON.msg);
+            },
+        });
+        //赋初值
+        form.val("albumEdit", {
+            "title": albumData.title
+            ,"description": albumData.description
+            ,"isPublic": albumData.isPublic
+        });
+
         /**
          * 初始化表单，要加上，不然刷新部分组件可能会不加载
          */
         form.render();
 
-        //监听指定开关
-        form.on('switch(switchTest)', function (data) {
-            layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
-                offset: '6px'
+        //监听提交
+        form.on('submit(save)', function(data) {
+            var isPub=data.field.isPublic === 'on';
+            jq1111.ajax({
+                type: "POST",
+                crossDomain:true,
+                url: "http://localhost:5000/api/PersonalAlbum/Update",
+                contentType: "application/json",
+                dataType:"json",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data:JSON.stringify(
+                    {
+                        "id": albumId,
+                        "title": data.field.title,
+                        "description": data.field.description,
+                        "isPublic": isPub
+                    }
+                ),
+                success:function (message) {
+                    console.log(message);
+                    layer.msg(message.msg, function () {
+                    });
+                },
+                error:function (message) {
+                    console.log(message.responseJSON);
+                    layer.msg('失败:'+message.responseJSON.msg);
+                },
             });
-            layer.tips('温馨提示：待定 ', data.othis)
+            return false;
         });
+
     });
 </script>

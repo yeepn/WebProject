@@ -35,11 +35,11 @@
             }],
             cols: [[
                 {type: "checkbox", width: 50},
-                {title: '操作', minWidth: 120, toolbar: '#currentTableBar2', align: "center"},
+                {title: '操作', width: 120, toolbar: '#currentTableBar2', align: "center"},
                 {field: 'id', width: 80, title: 'ID', sort: true},
-                {field: 'title', width: 80, title: '标题', sort: true},
+                {field: 'title', width: 120, title: '标题', sort: true},
                 {field: 'description', width: 280, title: '描述'},
-                {field: 'isPublic', width: 80, title: '是否公开'},
+                {field: 'isPublic', width: 120, title: '是否公开'},
                 // {field: 'singns', title: '标签', minWidth: 150},
                 // {field: 'albums', title: '相册数', minWidth: 150},
                 // {field: 'views', width: 135, title: '点击量', sort: true}
@@ -121,13 +121,15 @@
 
         table.on('tool(currentTableFilter2)', function (obj) {
             var data = obj.data;
+            //编辑相册
             if (obj.event === 'edit2') {
-
                 var content = miniPage.getHrefContent('page/student-gallery-manage/edit.html');
                 var openWH = miniPage.getOpenWidthHeight();
+                //TODO 需要一个更好的传参方法，先这样用着吧
+                localStorage.setItem('selectedAlbumId',data.id);
 
                 var index = layer.open({
-                    title: '编辑用户',
+                    title: '编辑相册',
                     type: 1,
                     shade: 0.2,
                     maxmin:true,

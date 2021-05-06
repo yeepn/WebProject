@@ -10,7 +10,7 @@
 
         <script type="text/html" id="currentTableBar2">
             <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit2">编辑</a>
-<!--            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-setting" lay-event="setting2">设置</a>-->
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-upload" lay-event="upload">上传资源</a>
             <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="preview">查看</a>
         </script>
 
@@ -35,7 +35,7 @@
             }],
             cols: [[
                 {type: "checkbox", width: 50},
-                {title: '操作', width: 120, toolbar: '#currentTableBar2', align: "center"},
+                {title: '操作', width: 220, toolbar: '#currentTableBar2', align: "center"},
                 {field: 'id', width: 80, title: 'ID', sort: true},
                 {field: 'title', width: 120, title: '标题', sort: true},
                 {field: 'description', width: 280, title: '描述'},
@@ -49,6 +49,31 @@
             page: true,
             skin: 'line'
         });
+
+        //相册删除函数
+        function deleteAlbum(albumId){
+            jq1111.ajax({
+                type: "POST",
+                crossDomain:true,
+                async:false,
+                url: "http://localhost:5000/api/PersonalAlbum/"+albumId+"/Delete",
+                contentType: "application/json",
+                dataType:"json",
+                data:JSON.stringify({
+
+                }),
+                xhrFields: {
+                    withCredentials: true
+                },
+                success:function (message) {
+                    return true;
+                },
+                error:function (message) {
+                    console.log(message.responseJSON);
+                    return false;
+                },
+            });
+        }
 
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
@@ -79,7 +104,7 @@
                 var openWH = miniPage.getOpenWidthHeight();
 
                 var index = layer.open({
-                    title: '添加用户',
+                    title: '创建相册',
                     type: 1,
                     shade: 0.2,
                     maxmin:true,
@@ -91,26 +116,27 @@
                 $(window).on("resize", function () {
                     layer.full(index);
                 });
-            } else if (obj.event === 'setting2') {  // 监听删除操作
-                var content = miniPage.getHrefContent('page/admin/gallery-table/student-upload.html');
-                var openWH = miniPage.getOpenWidthHeight();
-
-                var index = layer.open({
-                    title: '添加用户',
-                    type: 1,
-                    shade: 0.2,
-                    maxmin:true,
-                    shadeClose: true,
-                    area: [openWH[0] + 'px', openWH[1] + 'px'],
-                    offset: [openWH[2] + 'px', openWH[3] + 'px'],
-                    content: content,
+            } else if(obj.event === 'delete'){ // 设置删除操作
+                var checkStatus = table.checkStatus('currentTableId2')
+                    , data = checkStatus.data;
+                if(data.length===0){
+                    layer.alert('未选择要删除的数据', {
+                        title: '操作不合法'
+                    });
+                    return ;
+                }
+                var deletedItemCount=0;
+                data.forEach(function (deleteData){
+                    if(deleteAlbum(deleteData.id)){
+                        deletedItemCount++;
+                    }
                 });
-                $(window).on("resize", function () {
-                    layer.full(index);
+                //TODO 有计数bug，全部显示失败实际成功
+                layer.alert('成功删除'+deletedItemCount+'个数据,'+(data.length-deletedItemCount)+'条删除失败，如果存在删除失败，请尝试刷新界面重试', {
+                    title: '操作结果'
                 });
-            }else if(obj.event === 'preview'){ // 设置删除操作
-                console.log(123)
-                window.location = 'page/gallery/show.html';
+                table.reload('currentTableId',{}, 'data');
+                console.log(data)
             }
         });
 
@@ -142,11 +168,26 @@
                     layer.full(index);
                 });
                 return false;
-            } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del();
-                    layer.close(index);
+            } else if (obj.event === 'upload') {
+                var content = miniPage.getHrefContent('page/student-gallery-manage/upload.html');
+                var openWH = miniPage.getOpenWidthHeight();
+                //TODO 需要一个更好的传参方法，先这样用着吧
+                localStorage.setItem('selectedAlbumId',data.id);
+
+                var index = layer.open({
+                    title: '上传资源',
+                    type: 1,
+                    shade: 0.2,
+                    maxmin:true,
+                    shadeClose: true,
+                    area: [openWH[0] + 'px', openWH[1] + 'px'],
+                    offset: [openWH[2] + 'px', openWH[3] + 'px'],
+                    content: content,
                 });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+                return false;
             }else if(obj.event === 'preview'){ // 设置删除操作
                 console.log(123)
                 window.location = 'page/gallery/show.html';

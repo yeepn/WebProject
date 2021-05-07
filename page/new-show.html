@@ -5,68 +5,51 @@
     <meta charset="utf-8">
     <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../js/ad-gallery/jquery.ad-gallery.css">
-    <script type="text/javascript" src="../js/ad-gallery/jquery.ad-gallery.pack.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            var galleries = $('.ad-gallery').adGallery();
-            $('#switch-effect').change(
-                function() {
-                    galleries[0].settings.effect = $(this).val();
-                    return false;
-                }
-            );
-            $('#toggle-slideshow').click(
-                function() {
-                    galleries[0].slideshow.toggle();
-                    return false;
-                }
-            );
-        });
-    </script>
+
 
     <style type="text/css">
         body {
             margin: 0;
             padding: 0;
         }
-        
+
         .example {
             border: 1px solid #CCC;
             background: #f2f2f2;
             padding: 10px;
         }
-        
+
         ul {
             list-style-image: url(list-style.gif);
         }
-        
+
         pre {
             font-family: "Lucida Console", "Courier New", Verdana;
             border: 1px solid #CCC;
             background: #f2f2f2;
             padding: 10px;
         }
-        
+
         code {
             font-family: "Lucida Console", "Courier New", Verdana;
             margin: 0;
             padding: 0;
         }
-        
+
         #gallery {
             /* float: left; */
             padding: 30px;
             background: #e1eef5;
         }
-        
+
         .ad-thumb-list li a img {
             max-height: 5vw;
         }
-        
+
         #ad-slideshow-controls {
             display: none;
         }
-        
+
         #head {
             margin: 0;
             width: 100%;
@@ -74,25 +57,25 @@
             background-color: darkgrey;
             align-items: center;
         }
-        
+
         #logo {
             padding: 0 20px;
             display: flex;
             flex-grow: 1;
         }
-        
+
         #logo img {
             padding: 10px;
         }
-        
+
         #head div {
             padding: 0 10px;
         }
-        
+
         #logo h1 {
             color: white;
         }
-        
+
         button {
             display: inline-block;
             height: 38px;
@@ -107,7 +90,7 @@
             border-radius: 2px;
             cursor: pointer;
         }
-        
+
         #title {
             margin: 10px;
             padding: 15px;
@@ -116,15 +99,15 @@
             border-radius: 0 2px 2px 0;
             background-color: #FAFAFA;
         }
-        
+
         #title p {
             font-size: 2rem;
         }
-        
+
         #container {
             padding: 10px;
         }
-        
+
         #detail {
             margin: 10px;
             padding: 15px;
@@ -133,22 +116,22 @@
             border-radius: 0 2px 2px 0;
             background-color: #FAFAFA;
         }
-        
+
         #content {
             display: flex;
             justify-content: space-between;
         }
-        
+
         #container {
             width: 60vw;
             height: 50vw;
         }
-        
+
         #comment {
             padding: 10px;
             flex-grow: 1;
         }
-        
+
         textarea {
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             font-family: inherit;
@@ -173,31 +156,31 @@
             padding: 6px 10px;
             resize: vertical;
         }
-        
+
         #post button {
             margin: 10px 0;
         }
-        
+
         #floors {
             max-height: 35vw;
             overflow-y: scroll;
         }
-        
+
         #floors p {
             height: 100vh;
         }
-        
+
         .user_show {
             width: 14vw;
             margin-left: 2rem;
             float: left;
             border: 1px solid #1E9FFF;
         }
-        
+
         .sign {
             height: 20vw;
         }
-        
+
         .sign_detial {
             margin-top: 0.5rem;
         }
@@ -205,98 +188,169 @@
 </head>
 
 <body>
-    <div id="head">
-        <div id="logo">
-            <img src="http://www.henu.edu.cn/images/index/henu.png">
-            <h1>档案馆</h1>
-        </div>
-        <div>
-            <button>登录</button>
-            <button>返回</button>
-        </div>
+<div id="head">
+    <div id="logo">
+        <img src="http://www.henu.edu.cn/images/index/henu.png">
+        <h1>档案馆</h1>
     </div>
-    <div id="title">
-        <p>
-            我校2020级新生开学典礼暨军训动员大会
-        </p>
+    <div>
+        <button>登录</button>
+        <button>返回</button>
     </div>
-    <div id="content">
-        <div id="container">
-            <div id="gallery" class="ad-gallery">
-                <div class="ad-image-wrapper">
-                </div>
-                <div class="ad-controls">
-                </div>
-                <div class="ad-nav">
-                    <div class="ad-thumbs">
-                        <ul class="ad-thumb-list">
-                            <li>
-                                <a href="images/forTest/1.jpg">
-                                    <img src="images/forTest/1.jpg" title="标题" longdesc="描述">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="images/forTest/2.jpg">
-                                    <img src="images/forTest/2.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="images/forTest/3.jpg">
-                                    <img src="images/forTest/3.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="images/forTest/4.jpg">
-                                    <img src="images/forTest/4.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="images/forTest/5.jpg">
-                                    <img src="images/forTest/5.jpg">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="images/forTest/6.jpg">
-                                    <img src="images/forTest/6.jpg">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+</div>
+<div id="title">
+    <p id="titleText">
+    </p>
+</div>
+<div id="content">
+    <div id="container">
+        <div id="gallery" class="ad-gallery">
+            <div class="ad-image-wrapper">
+            </div>
+            <div class="ad-controls">
+            </div>
+            <div class="ad-nav">
+                <div class="ad-thumbs">
+                    <ul class="ad-thumb-list"  id="img-list">
+                    </ul>
                 </div>
             </div>
-            <!-- <div class="user_show">
-                <div class="sign">
-                    <h2>标签分类:</h2>
-                    <div class="sign_detial">
-                        <p>青春</p>
-                    </div>
+        </div>
+        <!-- <div class="user_show">
+            <div class="sign">
+                <h2>标签分类:</h2>
+                <div class="sign_detial">
+                    <p>青春</p>
                 </div>
-                <div>
-                    <div><i class="layui-icon">&#xe6c6;</i>
-                        <p>1</p>
-                    </div>
-                    <div><i class="layui-icon">&#xe633;;</i></div>
+            </div>
+            <div>
+                <div><i class="layui-icon">&#xe6c6;</i>
                     <p>1</p>
                 </div>
-            </div> -->
+                <div><i class="layui-icon">&#xe633;;</i></div>
+                <p>1</p>
+            </div>
+        </div> -->
+    </div>
+    <div id="comment">
+        <div id="post">
+            <textarea></textarea>
+            <button>发表评论</button>
         </div>
-        <div id="comment">
-            <div id="post">
-                <textarea></textarea>
-                <button>发表评论</button>
-            </div>
-            <div id="floors">
-                <p>
-                    这里是评论
-                </p>
-            </div>
+        <div id="floors">
+            <p>
+                这里是评论
+            </p>
         </div>
     </div>
+</div>
 
-    <div id="detail">
-        <p>为进一步推动党史学习教育活动走深、走实，切实将党史学习教育成果转化成为师生办实事、为学校谋发展的实际成效，4月27日下午，校党委书记卢克平在金明校区图书馆三楼会议室与马克思主义学院师生代表面对面座谈交流，了解学院党史学习教育开展情况，倾听师生心声，交流学习心得，研究部署下一步党史学习教育工作安排。校党委办公室、宣传部等相关职能部门负责人、马克思主义学院师生代表参加座谈。会议由校党委常委、宣传部部长王明钦主持。 极提出问题，卢克平一一予以解答。他指出，马克思主义学院要更加运用好马克思主义理论，做到“真学、真懂、真信、真用”，团结奋进、坚定信仰、砥砺前行，共谋共推学院发展。作为思政课教师，要以身作则，多学多知，深入思考研究，将思想理论转化为自己的知识体系，用个人魅力和综合素质引导学生主动学习。作为学生，要将所学专业理论知识运用于社会实践，在“知行合一”中感受马克思主义思想的磅礴伟力。
-        </p>
-    </div>
+<div id="detail">
+    <p id="detailText">
+    </p>
+</div>
+<script>
+    function getQueryVariable(variable)
+    {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+    }
+    var albumId=getQueryVariable('albumId');
+    var albumData;
+    var albumResources;
+    //获取相册基本数据
+    $.ajax({
+        type: "GET",
+        crossDomain:true,
+        url: "http://localhost:5000/api/PersonalAlbum/"+albumId,
+        contentType: "application/json",
+        dataType:"json",
+        xhrFields: {
+            withCredentials: true
+        },
+        success:function (message) {
+            albumData=message.data;
+            console.log(message);
+            //相册基本信息初始化
+            $('#titleText').text(albumData.title);
+            $('#detailText').text(albumData.description);
+        },
+        error:function (message) {
+            console.log(message.responseJSON);
+            alert(message.responseJSON.message)
+        },
+    });
+
+    //获取相册资源
+    $.ajax({
+        type: "GET",
+        crossDomain:true,
+        async:false,
+        url: "http://localhost:5000/api/Album/"+albumId+"/resources",
+        contentType: "application/json",
+        dataType:"json",
+        xhrFields: {
+            withCredentials: true
+        },
+        success:function (message) {
+            albumResources=message.data;
+            console.log(message);
+            //相册资源初始化
+            albumResources.forEach(function (res){
+                console.log(res.resourceType)
+                if(res.resourceType===0){
+                    $("#img-list").append(
+                        '<li>' +
+                        '<a href="' +
+                        'http://localhost:5000/api/resource/' +res.resourceId+
+                        '">' +
+                        '<img src="' +
+                        'http://localhost:5000/api/resource/' +res.resourceId+
+                        '" title="' +
+                        res.resourceTitle +
+                        '" longdesc="' +
+                        res.resourceDescription +
+                        '">' +
+                        '</a>' +
+                        '</li>');
+                }
+
+            });
+        },
+        error:function (message) {
+            console.log(message.responseJSON);
+            alert(message.responseJSON.message)
+        },
+    });
+
+
+
+</script>
+<script type="text/javascript" src="../js/ad-gallery/jquery.ad-gallery.pack.js"></script>
+<script type="text/javascript">
+    var galleries = $('.ad-gallery').adGallery();
+    $('#switch-effect').change(
+        function () {
+            galleries[0].settings.effect = $(this).val();
+            return false;
+        }
+    );
+    $('#toggle-slideshow').click(
+        function () {
+            galleries[0].slideshow.toggle();
+            return false;
+        }
+    );
+    $(function () {
+
+    });
+</script>
+
 </body>
 <style>
 

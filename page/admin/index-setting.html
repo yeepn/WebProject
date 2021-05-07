@@ -63,91 +63,140 @@
 
 
             <div class="layui-form-item">
-                <label class="layui-form-label">轮播图上传</label>
-                <div class="layui-input-block">
-                    <input type="file" name="imgOne" id="imgOne" onchange="addImg(this.id);"/>
-                </div>
+                <label class="layui-form-label">添加轮播图</label>
+                <button type="button" class="layui-btn" id="carousel-upload">
+                    <i class="layui-icon">&#xe67c;</i>上传图片
+                </button>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">预览</label>
                 <div id="photos">
-                    <div class="photo">
-                        <!--                    轮播图片-->
-                        <img src="images/test.png" id="photo1" class="photo-img">
-                        <i class="fa fa-times photo-remove" aria-hidden="true" onclick="remove(this)"></i>
-                        <!--                    优先级选择-->
-                        <div style="width: 130px">
-                            <select name="rank" lay-filter="rank">
-                                <option value=""></option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="photo">
-                        <!--                    轮播图片-->
-                        <img src="images/test.png" id="photo2" class="photo-img">
-                        <i class="fa fa-times photo-remove" aria-hidden="true"  onclick="remove(this)"></i>
-                        <!--                    优先级选择-->
-                        <div style="width: 130px">
-                            <select name="rank" lay-filter="rank">
-                                <option value=""></option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="photo">
-                        <!--                    轮播图片-->
-                        <img src="images/test.png" id="photo3" class="photo-img">
-                        <i class="fa fa-times photo-remove" aria-hidden="true" onclick="remove(this)"></i>
-                        <!--                    优先级选择-->
-                        <div style="width: 130px">
-                            <select name="rank" lay-filter="rank">
-                                <option value=""></option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-                    </div>
-
+<!--                    <div class="photo">-->
+<!--                        &lt;!&ndash;                    轮播图片&ndash;&gt;-->
+<!--                        <img src="images/test.png" id="photo1" class="photo-img">-->
+<!--                        <i class="fa fa-times photo-remove" aria-hidden="true" onclick="remove(this)"></i>-->
+                        <!--                    优先级选择，先去掉，不好搞-->
+<!--                        <div style="width: 130px">-->
+<!--                            <select name="rank" lay-filter="rank">-->
+<!--                                <option value=""></option>-->
+<!--                                <option value="0">0</option>-->
+<!--                                <option value="1">1</option>-->
+<!--                                <option value="2">2</option>-->
+<!--                                <option value="3">3</option>-->
+<!--                                <option value="4">4</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
+
 
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
                 <legend>首页推荐相册设置</legend>
             </fieldset>
             <div class="layui-form-item">
                 <label class="layui-form-label">推荐相册ID</label>
-                <div class="layui-input-block layui-inline" style="width: 20%;margin-left: unset">
-                    <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入大小ID"
-                           class="layui-input">
+                <div class="layui-input-block layui-inline" style="width: 15%;margin-left: unset">
+                    <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入相册ID"
+                           class="layui-input HRID-input">
+                </div>
+                <div class="layui-input-block layui-inline" style="width: 15%;margin-left: unset">
+                    <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入相册ID"
+                           class="layui-input HRID-input">
+                </div>
+                <div class="layui-input-block layui-inline" style="width: 15%;margin-left: unset">
+                    <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入相册ID"
+                           class="layui-input HRID-input">
+                </div>
+                <div class="layui-input-block layui-inline" style="width: 15%;margin-left: unset">
+                    <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入相册ID"
+                           class="layui-input HRID-input">
+                </div>
+                <div class="layui-input-block layui-inline" style="width: 15%;margin-left: unset">
+                    <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入相册ID"
+                           class="layui-input HRID-input">
+                </div>
+                <div class="layui-input-block layui-inline" style="width: 15%;margin-left: unset">
+                    <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入相册ID"
+                           class="layui-input HRID-input">
+                </div>
+                <div class="layui-input-block layui-inline" style="width: 15%;margin-left: unset">
+                    <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入相册ID"
+                           class="layui-input HRID-input">
+                </div>
+                <div class="layui-input-block layui-inline" style="width: 15%;margin-left: unset">
+                    <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="请输入相册ID"
+                           class="layui-input HRID-input">
                 </div>
             </div>
             <center>
                 <button class="layui-btn" lay-submit="" lay-filter="demo2" style="margin: 0 auto">保存</button>
             </center>
+
         </form>
 
     </div>
 </div>
 <script>
-    layui.use(['form', 'layedit', 'laydate'], function () {
+    layui.use(['form', 'layedit', 'laydate','upload'], function () {
         var form = layui.form
             , layer = layui.layer
             , layedit = layui.layedit
             , laydate = layui.laydate;
+        var upload = layui.upload;
+
+        //轮播图上传
+        var uploadInst = upload.render({
+            elem: '#carousel-upload' //绑定元素
+            ,url: 'http://localhost:5000/api/Carousel/Upload' //上传接口
+            ,done: function(res){
+                layer.msg('上传成功',function (){
+                    jq1111('.layui-nav-item')[2].trigger("click");
+                });
+            }
+            ,error: function(){
+                layer.msg('上传失败，请联系管理员');
+            }
+        });
+
+        //初始化内容
+        var carouselData;
+        jq1111.ajax({
+            type: "GET",
+            crossDomain:true,
+            url: "http://localhost:5000/api/Carousel",
+            contentType: "application/json",
+            dataType:"json",
+            async:false,
+            xhrFields: {
+                withCredentials: true
+            },
+            success:function (message) {
+                console.log(message);
+                carouselData=message.data;
+                //图片设置
+                carouselData.forEach(function (data) {
+                    jq1111('#photos').append(
+                        '<div class="photo">\n' +
+                        '<img src="' +
+                        'http://localhost:5000/CarouselImages/'+ data.fileName+
+                        '" id="photo1" class="photo-img">\n' +
+                        '<i class="fa fa-times photo-remove" aria-hidden="true" onclick="remove(' +
+                        data.id +
+                        ')"></i>\n' +
+                        '</div>');
+
+                });
+
+            },
+            error:function (message) {
+                console.log(message.responseJSON);
+                layer.msg('登录失败:'+message.responseJSON.msg);
+            },
+        });
+
+
+
 
         /**
          * 初始化表单，要加上，不然刷新部分组件可能会不加载
@@ -199,55 +248,77 @@
     });
 </script>
 <script type="text/javascript">
-    function getFileUrl(sourceId) {
-        var url;
-        if (navigator.userAgent.indexOf("MSIE") >= 1) { // IE
-            url = document.getElementById(sourceId).value;
-        } else if (navigator.userAgent.indexOf("Firefox") > 0) { // Firefox
-            url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
-        } else if (navigator.userAgent.indexOf("Chrome") > 0) { // Chrome
-            url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
-        }
-        return url;
+
+    //轮播图删除函数
+    function remove(carouselId){
+        jq1111.ajax({
+            type: "POST",
+            crossDomain:true,
+            url: "http://localhost:5000/api/Carousel/"+carouselId+"/Remove",
+            contentType: "application/json",
+            dataType:"json",
+            xhrFields: {
+                withCredentials: true
+            },
+            success:function (message) {
+                console.log(message);
+            },
+            error:function (message) {
+                console.log(message.responseJSON);
+                layer.msg('登录失败:'+message.responseJSON.msg);
+            },
+        });
     }
 
-    function preImg(sourceId, targetId) {
-        var url = getFileUrl(sourceId);
-        var imgPre = document.getElementById(targetId);
-        imgPre.src = url;
-    }
-
-    function addImg(sourceId) {
-        var photos = jq1111('#photos');
-        var photoCount = photos.children().length;
-        if (photoCount >= 6) {
-            alert('图片过多，请先移除一个');
-            return;
-        }
-        console.log(photos);
-        var newphoto='<div class="photo">\n' +
-            '                        <img src="images/test.png" id="photo'+photoCount+'" class="photo-img">\n' +
-            '                        <i class="fa fa-times photo-remove" aria-hidden="true" onclick="remove(this)"></i>\n' +
-            '                        <div style="width: 130px">\n' +
-            '                            <select name="rank" lay-filter="rank">\n' +
-            '                                <option value=""></option>\n' +
-            '                                <option value="0">0</option>\n' +
-            '                                <option value="1">1</option>\n' +
-            '                                <option value="2">2</option>\n' +
-            '                                <option value="3">3</option>\n' +
-            '                                <option value="4">4</option>\n' +
-            '                            </select>\n' +
-            '                        </div>\n' +
-            '                    </div>'
-        photos.children().eq(photoCount - 1).after(newphoto);
-        photos = jq1111('#photos');
-        photoCount = photos.children().length;
-        photos.children().eq(photoCount - 1).children().eq(0).attr('src', getFileUrl(sourceId));
-
-        //preImg(sourceId,'photo')
-    }
-    function remove(target){
-        jq1111(target).parent().remove();
-        console.log(target)
-    }
+    // function getFileUrl(sourceId) {
+    //     var url;
+    //     if (navigator.userAgent.indexOf("MSIE") >= 1) { // IE
+    //         url = document.getElementById(sourceId).value;
+    //     } else if (navigator.userAgent.indexOf("Firefox") > 0) { // Firefox
+    //         url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+    //     } else if (navigator.userAgent.indexOf("Chrome") > 0) { // Chrome
+    //         url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+    //     }
+    //     return url;
+    // }
+    //
+    // function preImg(sourceId, targetId) {
+    //     var url = getFileUrl(sourceId);
+    //     var imgPre = document.getElementById(targetId);
+    //     imgPre.src = url;
+    // }
+    //
+    // function addImg(sourceId) {
+    //     var photos = jq1111('#photos');
+    //     var photoCount = photos.children().length;
+    //     if (photoCount >= 6) {
+    //         alert('图片过多，请先移除一个');
+    //         return;
+    //     }
+    //     console.log(photos);
+    //     var newphoto='<div class="photo">\n' +
+    //         '                        <img src="images/test.png" id="photo'+photoCount+'" class="photo-img">\n' +
+    //         '                        <i class="fa fa-times photo-remove" aria-hidden="true" onclick="remove(this)"></i>\n' +
+    //         '                        <div style="width: 130px">\n' +
+    //         '                            <select name="rank" lay-filter="rank">\n' +
+    //         '                                <option value=""></option>\n' +
+    //         '                                <option value="0">0</option>\n' +
+    //         '                                <option value="1">1</option>\n' +
+    //         '                                <option value="2">2</option>\n' +
+    //         '                                <option value="3">3</option>\n' +
+    //         '                                <option value="4">4</option>\n' +
+    //         '                            </select>\n' +
+    //         '                        </div>\n' +
+    //         '                    </div>'
+    //     photos.children().eq(photoCount - 1).after(newphoto);
+    //     photos = jq1111('#photos');
+    //     photoCount = photos.children().length;
+    //     photos.children().eq(photoCount - 1).children().eq(0).attr('src', getFileUrl(sourceId));
+    //
+    //     //preImg(sourceId,'photo')
+    // }
+    // function remove(target){
+    //     jq1111(target).parent().remove();
+    //     console.log(target)
+    // }
 </script>

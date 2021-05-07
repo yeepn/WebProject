@@ -1,7 +1,6 @@
 <!-- bootstrap引入 -->
 <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <!-- 样式添加 -->
 <style>
     .welcome .search-box {
@@ -12,7 +11,7 @@
         justify-content: center;
         margin: 0 auto;
     }
-    
+
     .box:hover {
         box-shadow: 0 8px 8px rgba(10, 16, 20, .24), 0 0 8px rgba(10, 16, 20, .12);
         text-decoration: none;
@@ -20,7 +19,7 @@
         border: 0;
         transform: translateY(-5px);
     }
-    
+
     .text_hidden {
         height: 3.8rem;
         overflow: hidden;
@@ -30,16 +29,16 @@
         -webkit-box-orient: vertical;
         text-align: center;
     }
-    
+
     .photo_hight {
         position: relative;
         height: 25rem;
     }
-    
+
     .photo_hight a {
         color: #000;
     }
-    
+
     .recommend {
         color: red;
         position: absolute;
@@ -47,16 +46,16 @@
         top: 0rem;
         right: 0rem;
     }
-    
+
     .photo_hidden {
         width: 100%;
         height: 15.5rem;
     }
-    
+
     .photo_hidden img {
         height: 15.5rem;
     }
-    
+
     .under {
         width: 100%;
         margin-top: 2rem;
@@ -66,7 +65,7 @@
         background-repeat: no-repeat;
         background-position: 40% 45%;
     }
-    
+
     .under_main {
         display: flex;
         height: 30rem;
@@ -74,7 +73,7 @@
         overflow: hidden;
         justify-content: space-between;
     }
-    
+
     .under_main ul {
         display: flex;
         justify-content: space-between;
@@ -83,7 +82,7 @@
         margin-top: 6rem;
         padding: 0px;
     }
-    
+
     .under_main ul li {
         height: 1.6rem;
         line-height: 1.6rem;
@@ -92,22 +91,22 @@
         font-size: 1.6rem;
         overflow: hidden;
     }
-    
+
     .under_logo {
         height: 18rem;
         margin-top: 6rem;
     }
-    
+
     .under_main ul li a {
         text-decoration: none;
         color: white;
     }
-    
+
     .under_logo img {
         padding-bottom: 1rem;
         border-bottom: solid 1px white;
     }
-    
+
     .under_logo p {
         margin: 0px;
         height: 4rem;
@@ -131,26 +130,12 @@
     <!--    轮播图start-->
     <div id="myCarousel" class="carousel slide">
         <!-- 轮播（Carousel）指标 -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-            <li data-target="#myCarousel" data-slide-to="3"></li>
+        <ol class="carousel-indicators" id="carousel-indicator">
+
         </ol>
         <!-- 轮播（Carousel）项目 -->
-        <div class="carousel-inner">
-            <div class="item active">
-                <img src="images/ndm1900.jpg" alt="First slide">
-            </div>
-            <div class="item">
-                <img src="images/415.jpg" alt="Second slide">
-            </div>
-            <div class="item">
-                <img src="images/yxmk1900.jpg" alt="Third slide">
-            </div>
-            <div class="item">
-                <img src="images/100.jpg" alt="Fourth slide">
-            </div>
+        <div class="carousel-inner" id="carousel-img">
+
         </div>
         <!-- 轮播（Carousel）导航 -->
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -169,33 +154,40 @@
         <div class="row ">
             <div class=" col-md-3 box col-xs-6 photo_hight">
                 <a href="#">
-                    <div class="photo_hidden"><img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg " alt=" " class="img-responsive center-block"></div>
-                    <h4 style="text-align: center;"><strong>河大LOGO</strong> </h4>
+                    <div class="photo_hidden"><img
+                            src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg "
+                            alt=" " class="img-responsive center-block"></div>
+                    <h4 style="text-align: center;"><strong>河大LOGO</strong></h4>
                     <p class="text_hidden">人海加油</p>
                     <span class="layui-badge-rim recommend layui-bg-blue">Hot</span>
                 </a>
             </div>
             <div class=" col-md-3 box col-xs-6 photo_hight">
                 <a href="#">
-                    <div class="photo_hidden"><img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8814%E6%97%A5__44add6fd8de55fb3a3b53086bb61f9a7e5bb3b24%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%8720200914083807.jpg"
+                    <div class="photo_hidden"><img
+                            src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8814%E6%97%A5__44add6fd8de55fb3a3b53086bb61f9a7e5bb3b24%2F%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%8720200914083807.jpg"
                             alt=" " class=" center-block"></div>
-                    <h4 style="text-align: center;"> <strong>新生报到</strong> </h4>
+                    <h4 style="text-align: center;"><strong>新生报到</strong></h4>
                     <p class="text_hidden ">人海加油</p>
                     <span class="layui-badge-rim recommend layui-bg-blue">Hot</span></a>
             </div>
             <div class=" col-md-3 box col-xs-6 photo_hight">
                 <a href="#">
-                    <div class="photo_hidden"> <img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8810%E6%97%A5__474ddabfcd2b49c754e689ee0519a922428a3475%2FF2A1B8CAD5F51BDF42B818771EF4B030ECD185C9.jpg" alt=" "
+                    <div class="photo_hidden"><img
+                            src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8810%E6%97%A5__474ddabfcd2b49c754e689ee0519a922428a3475%2FF2A1B8CAD5F51BDF42B818771EF4B030ECD185C9.jpg"
+                            alt=" "
                             class="img-responsive center-block "></div>
-                    <h4 style="text-align: center;"> <strong>考察调研</strong> </h4>
+                    <h4 style="text-align: center;"><strong>考察调研</strong></h4>
                     <p class="text_hidden ">民进中央副主席、秘书长高友东来我校考察调研</p>
                     <span class="layui-badge-rim recommend layui-bg-blue">Hot</span></a>
             </div>
             <div class=" col-md-3 box col-xs-6 photo_hight">
                 <a href="#">
-                    <div class="photo_hidden"> <img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8810%E6%97%A5__3c77319ad6600f7b4c126860d558eaf677fbf906%2FAD1799030BF235172F527C390D2D4231C9319022.jpg" alt=" "
+                    <div class="photo_hidden"><img
+                            src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8810%E6%97%A5__3c77319ad6600f7b4c126860d558eaf677fbf906%2FAD1799030BF235172F527C390D2D4231C9319022.jpg"
+                            alt=" "
                             class="img-responsive center-block "></div>
-                    <h4 style="text-align: center;"> <strong>科研平台</strong> </h4>
+                    <h4 style="text-align: center;"><strong>科研平台</strong></h4>
                     <p class="text_hidden ">人海加油</p>
                     <span class="layui-badge-rim recommend layui-bg-blue">Hot</span></a>
             </div>
@@ -206,30 +198,38 @@
         <div class="row ">
             <div class=" col-md-3 box col-xs-6 photo_hight">
                 <a href="#">
-                    <div class="photo_hidden"><img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__fa7d181dfcc86ab57847fb499a2b164881ccc1b3%2Fu4416128501633144491fm173app49fJPEG.jpg" alt=" "
+                    <div class="photo_hidden"><img
+                            src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__fa7d181dfcc86ab57847fb499a2b164881ccc1b3%2Fu4416128501633144491fm173app49fJPEG.jpg"
+                            alt=" "
                             class="img-responsive center-block "></div>
-                    <h4 style="text-align: center;"> <strong>河大校园</strong> </h4>
+                    <h4 style="text-align: center;"><strong>河大校园</strong></h4>
                     <p class="text_hidden ">人海加油</p>
                     <span class="layui-badge-rim recommend layui-bg-blue">Hot</span></a>
             </div>
             <div class=" col-md-3 box col-xs-6 photo_hight">
                 <a href="#">
-                    <div class="photo_hidden"><img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__3248d701f4548e917c35bad7aa94f8b8535ea2d3%2F1588109358729378.jpg" alt=" " class="img-responsive center-block "></div>
-                    <h4 style="text-align: center;"> <strong>南大门</strong> </h4>
+                    <div class="photo_hidden"><img
+                            src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__3248d701f4548e917c35bad7aa94f8b8535ea2d3%2F1588109358729378.jpg"
+                            alt=" " class="img-responsive center-block "></div>
+                    <h4 style="text-align: center;"><strong>南大门</strong></h4>
                     <p class="text_hidden ">人海加油</p>
                     <span class="layui-badge-rim recommend layui-bg-blue">Hot</span></a>
             </div>
             <div class=" col-md-3 box col-xs-6 photo_hight">
                 <a href="#">
-                    <div class="photo_hidden"><img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__06f7dcf5ab127dd43c9841175c0ecc04dc7cb862%2Ftimg2.jpg " alt=" " class="img-responsive center-block "></div>
-                    <h4 style="text-align: center;"> <strong>大礼堂</strong> </h4>
+                    <div class="photo_hidden"><img
+                            src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__06f7dcf5ab127dd43c9841175c0ecc04dc7cb862%2Ftimg2.jpg "
+                            alt=" " class="img-responsive center-block "></div>
+                    <h4 style="text-align: center;"><strong>大礼堂</strong></h4>
                     <p class="text_hidden ">人海加油</p>
                     <span class="layui-badge-rim recommend layui-bg-blue">Hot</span></a>
             </div>
             <div class=" col-md-3 box col-xs-6 photo_hight">
                 <a href="#">
-                    <div class="photo_hidden"> <img src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg " alt=" " class="img-responsive center-block"></div>
-                    <h4 style="text-align: center;"><strong>河大LOGO</strong> </h4>
+                    <div class="photo_hidden"><img
+                            src="http://sxgl.henu.edu.cn:80//index/showImage.do?type=3&img=%2Fuploadimg%2F%E5%9B%BE%E7%89%87%2F2020%E5%B9%B409%E6%9C%8807%E6%97%A5__7f41b4201612184c515924169a8079b09d09a147%2F4103535362.jpg "
+                            alt=" " class="img-responsive center-block"></div>
+                    <h4 style="text-align: center;"><strong>河大LOGO</strong></h4>
                     <p class="text_hidden">人海加油</p>
                     <span class="layui-badge-rim recommend layui-bg-blue">Hot</span></a>
             </div>
@@ -285,57 +285,49 @@
     <!-- 版权声明 end -->
 </div>
 <script>
-    layui.use(['form', 'layedit', 'laydate'], function() {
-        var form = layui.form,
-            layer = layui.layer,
-            layedit = layui.layedit,
-            laydate = layui.laydate;
-
-        /**
-         * 初始化表单，要加上，不然刷新部分组件可能会不加载
-         */
-        form.render();
-
-        //日期
-        laydate.render({
-            elem: '#date'
-        });
-        laydate.render({
-            elem: '#date1'
-        });
-
-        //创建一个编辑器
-        var editIndex = layedit.build('LAY_demo_editor');
-
-        //自定义验证规则
-        form.verify({
-            title: function(value) {
-                if (value.length < 5) {
-                    return '标题至少得5个字符啊';
-                }
-            },
-            pass: [
-                /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'
-            ],
-            content: function(value) {
-                layedit.sync(editIndex);
+    function qq (message) {
+        console.log(message);
+        carouselData = message.data;
+        var i = 0;
+        for (i = 0; i < carouselData.length; i++) {
+            if (i === 0) {
+                jq1111('#carousel-indicator').append('<li data-target="#myCarousel" data-slide-to="0" class="active"></li>');
+                jq1111('#carousel-img').append('<div class="item  active">' +
+                    '<img src="' +
+                    'http://localhost:5000/CarouselImages/' + carouselData[i].fileName +
+                    '</div>');
+            } else {
+                jq1111('#carousel-indicator').append(
+                    '<li data-target="#myCarousel" data-slide-to="' +
+                    i +
+                    '"></li>');
+                jq1111('#carousel-img').append('<div class="item">' +
+                    '<img src="' +
+                    'http://localhost:5000/CarouselImages/' + carouselData[i].fileName +
+                    '</div>');
             }
-        });
-
-        //监听指定开关
-        form.on('switch(switchTest)', function(data) {
-            layer.msg('开关checked：' + (this.checked ? 'true' : 'false'), {
-                offset: '6px'
-            });
-            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
-        });
-
-        //监听提交
-        form.on('submit(demo1)', function(data) {
-            layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            })
-            return false;
-        });
+        }
+    }
+    //轮播图获取
+    var carouselData;
+    jq1111.ajax({
+        type: "GET",
+        crossDomain: true,
+        url: "http://localhost:5000/api/Carousel",
+        contentType: "application/json",
+        dataType: "json",
+        async: false,
+        xhrFields: {
+            withCredentials: true
+        },
+        error: function (message) {
+            console.log(message.responseJSON);
+            // layer.msg('失败:'+message.responseJSON.msg);
+        },
+        success: qq,
     });
-</script>
+
+    console.log(123156456456);
+    </script>
+<script src = "https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js" ></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>

@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <button type="submit" class="layui-btn layui-btn-primary"  lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
+                            <button type="submit" class="layui-btn layui-btn-primary" lay-submit lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
                         </div>
                     </div>
                 </form>
@@ -56,7 +56,7 @@
 </div>
 
 <script>
-    layui.use(['form', 'table','miniPage','element'], function () {
+    layui.use(['form', 'table', 'miniPage', 'element'], function() {
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table,
@@ -65,90 +65,90 @@
         //学院选择
         jq1111.ajax({
             type: "GET",
-            crossDomain:true,
+            crossDomain: true,
             url: "http://localhost:5000/api/School/Colleges",
             contentType: "application/json",
-            dataType:"json",
+            dataType: "json",
             xhrFields: {
                 withCredentials: true
             },
-            success:function (message) {
-                var colleges=message.data;
+            success: function(message) {
+                var colleges = message.data;
                 console.log(message);
-                colleges.forEach(function (college) {
-                    console.log(college)
-                    jq1111("#college-select-search").append('' +
-                        '<option value="' +
-                        college.id +
-                        '">' +
-                        college.name +
-                        '</option>' +
-                        '')
-                })
-                //再次初始化form
+                colleges.forEach(function(college) {
+                        console.log(college)
+                        jq1111("#college-select-search").append('' +
+                            '<option value="' +
+                            college.id +
+                            '">' +
+                            college.name +
+                            '</option>' +
+                            '')
+                    })
+                    //再次初始化form
                 form.render();
             },
-            error:function (message) {
+            error: function(message) {
                 console.log(message.responseJSON);
-                layer.msg('失败:'+message.responseJSON.message);
+                layer.msg('失败:' + message.responseJSON.message);
             },
         });
 
-        //年纪选择
+        //年级选择
         jq1111.ajax({
             type: "GET",
-            crossDomain:true,
+            crossDomain: true,
             url: "http://localhost:5000/api/School/Grades",
             contentType: "application/json",
-            dataType:"json",
+            dataType: "json",
             xhrFields: {
                 withCredentials: true
             },
-            success:function (message) {
+            success: function(message) {
                 console.log(message)
-                var grades=message.data;
-                grades.forEach(function (grade) {
-                    jq1111("#grade-select-search").append('' +
-                        '<option value="' +
-                        grade.id +
-                        '">' +
-                        grade.display +
-                        '</option>' +
-                        '')
-                })
-                //再次初始化form
+                var grades = message.data;
+                grades.forEach(function(grade) {
+                        jq1111("#grade-select-search").append('' +
+                            '<option value="' +
+                            grade.id +
+                            '">' +
+                            grade.display +
+                            '</option>' +
+                            '')
+                    })
+                    //再次初始化form
                 form.render();
             },
-            error:function (message) {
+            error: function(message) {
                 console.log(message.responseJSON);
-                layer.msg('失败:'+message.responseJSON.message);
+                layer.msg('失败:' + message.responseJSON.message);
             },
         });
 
         //专业选择
-        var collegeSelectValLast=jq1111("#college-select-search").val();
-        jq1111("#major-select-search").attr("disabled","disabled")
-        var timer = window.setInterval(function(){
+        var collegeSelectValLast = jq1111("#college-select-search").val();
+        jq1111("#major-select-search").attr("disabled", "disabled")
+        var timer = window.setInterval(function() {
             console.log("timer")
             jq1111("#major-select-search").removeAttr("disabled");
-            if(jq1111("#college-select-search").val()!==collegeSelectValLast){
-                var children=jq1111("#major-select-search").children();
-                for (i=1;i<children.length;i++){
+            if (jq1111("#college-select-search").val() !== collegeSelectValLast) {
+                var children = jq1111("#major-select-search").children();
+                for (i = 1; i < children.length; i++) {
                     children.eq(i).remove();
                 }
                 //专业选择
                 jq1111.ajax({
                     type: "GET",
-                    crossDomain:true,
-                    url: "http://localhost:5000/api/School/Majors?collegeId="+jq1111("#college-select-search").val(),
+                    crossDomain: true,
+                    url: "http://localhost:5000/api/School/Majors?collegeId=" + jq1111("#college-select-search").val(),
                     contentType: "application/json",
-                    dataType:"json",
+                    dataType: "json",
                     xhrFields: {
                         withCredentials: true
                     },
-                    success:function (message) {
-                        var majors=message.data;
-                        majors.forEach(function (major) {
+                    success: function(message) {
+                        var majors = message.data;
+                        majors.forEach(function(major) {
                             jq1111("#major-select-search").append('' +
                                 '<option value="' +
                                 major.id +
@@ -159,15 +159,15 @@
                         });
                         //再次初始化form
                         form.render();
-                        collegeSelectValLast=jq1111("#college-select-search").val()
+                        collegeSelectValLast = jq1111("#college-select-search").val()
                     },
-                    error:function (message) {
+                    error: function(message) {
                         console.log(message.responseJSON);
-                        collegeSelectValLast=null;
+                        collegeSelectValLast = null;
                     },
                 });
             }
-        },1000);
+        }, 1000);
 
 
 
@@ -180,16 +180,39 @@
                 layEvent: 'LAYTABLE_TIPS',
                 icon: 'layui-icon-tips'
             }],
-            cols: [[
-                {type: "checkbox", width: 50},
-                {field: 'id', width: 80, title: 'ID', sort: true},
-                {field: 'name', width: 200, title: '班级名'},
-                {field: 'studentCount', width: 80, title: '人数', sort: true},
-                // {field: 'college', width: 200, title: '学院'},
-                // {field: 'grade.display', title: '年级', minWidth: 150},
-                {field: 'albumCount', title: '相册数', minWidth: 150},
-                {title: '操作', minWidth: 180, toolbar: '#currentTableBar', align: "center"}
-            ]],
+            cols: [
+                [{
+                        type: "checkbox",
+                        width: 50
+                    }, {
+                        field: 'id',
+                        width: 80,
+                        title: 'ID',
+                        sort: true
+                    }, {
+                        field: 'name',
+                        width: 200,
+                        title: '班级名'
+                    }, {
+                        field: 'studentCount',
+                        width: 80,
+                        title: '人数',
+                        sort: true
+                    },
+                    // {field: 'college', width: 200, title: '学院'},
+                    // {field: 'grade.display', title: '年级', minWidth: 150},
+                    {
+                        field: 'albumCount',
+                        title: '相册数',
+                        minWidth: 150
+                    }, {
+                        title: '操作',
+                        minWidth: 180,
+                        toolbar: '#currentTableBar',
+                        align: "center"
+                    }
+                ]
+            ],
             // limits: [10, 15, 20, 25, 50, 100],
             // limit: 15,
             // page: true,
@@ -197,19 +220,19 @@
         });
 
         // 监听搜索操作
-        form.on('submit(data-search-btn)', function (data) {
+        form.on('submit(data-search-btn)', function(data) {
             var result = JSON.stringify(data.field);
 
-            if(data.field.major===""||data.field.grade===""){
+            if (data.field.major === "" || data.field.grade === "") {
                 layer.alert('参数不全，请检查检索条件', {
                     title: '参数不全，请检查检索条件'
                 });
                 return false;
             }
             console.log(data)
-            //执行搜索重载
+                //执行搜索重载
             table.reload('currentTableId', {
-                url: 'http://localhost:5000/api/School/QueryClasses?majorId='+data.field.major+'&gradeId='+data.field.grade,
+                url: 'http://localhost:5000/api/School/QueryClasses?majorId=' + data.field.major + '&gradeId=' + data.field.grade,
             }, 'data');
 
             return false;
@@ -218,8 +241,8 @@
         /**
          * toolbar事件监听
          */
-        table.on('toolbar(currentTableFilter)', function (obj) {
-            if (obj.event === 'add') {   // 监听添加操作
+        table.on('toolbar(currentTableFilter)', function(obj) {
+            if (obj.event === 'add') { // 监听添加操作
                 var content = miniPage.getHrefContent('page/admin/classes-setting/add.html');
                 var openWH = miniPage.getOpenWidthHeight();
 
@@ -227,36 +250,36 @@
                     title: '添加班级',
                     type: 1,
                     shade: 0.2,
-                    maxmin:true,
+                    maxmin: true,
                     shadeClose: true,
                     area: [openWH[0] + 'px', openWH[1] + 'px'],
                     offset: [openWH[2] + 'px', openWH[3] + 'px'],
                     content: content,
                 });
-                $(window).on("resize", function () {
+                $(window).on("resize", function() {
                     layer.full(index);
                 });
-            } else if (obj.event === 'delete') {  // 监听删除操作
-                var checkStatus = table.checkStatus('currentTableId')
-                    , data = checkStatus.data;
-                if(data.length===0){
+            } else if (obj.event === 'delete') { // 监听删除操作
+                var checkStatus = table.checkStatus('currentTableId'),
+                    data = checkStatus.data;
+                if (data.length === 0) {
                     layer.alert('未选择要删除的数据', {
                         title: '操作不合法'
                     });
-                    return ;
+                    return;
                 }
-                var deletedItemCount=0;
-                data.forEach(function (deleteData){
-                    if(deleteClass(deleteData.id)){
+                var deletedItemCount = 0;
+                data.forEach(function(deleteData) {
+                    if (deleteClass(deleteData.id)) {
                         deletedItemCount++;
                     }
                 });
-                layer.alert('成功删除'+deletedItemCount+'个数据,'+(data.length-deletedItemCount)+'条删除失败，如果存在删除失败，请尝试刷新界面重试', {
+                layer.alert('成功删除' + deletedItemCount + '个数据,' + (data.length - deletedItemCount) + '条删除失败，如果存在删除失败，请尝试刷新界面重试', {
                     title: '操作结果'
                 });
-                table.reload('currentTableId',{}, 'data');
+                table.reload('currentTableId', {}, 'data');
                 console.log(data)
-            }else if(obj.event === 'setting'){ // 设置删除操作
+            } else if (obj.event === 'setting') { // 设置删除操作
                 var content = miniPage.getHrefContent('page/admin/classes-setting/setting.html');
                 var openWH = miniPage.getOpenWidthHeight();
 
@@ -264,68 +287,68 @@
                     title: '班级设置',
                     type: 1,
                     shade: 0.2,
-                    maxmin:true,
+                    maxmin: true,
                     shadeClose: true,
                     area: [openWH[0] + 'px', openWH[1] + 'px'],
                     offset: [openWH[2] + 'px', openWH[3] + 'px'],
                     content: content,
                 });
-                $(window).on("resize", function () {
+                $(window).on("resize", function() {
                     layer.full(index);
                 });
             }
         });
 
         //监听表格复选框选择
-        table.on('checkbox(currentTableFilter)', function (obj) {
+        table.on('checkbox(currentTableFilter)', function(obj) {
             console.log(obj)
         });
 
-        table.on('tool(currentTableFilter)', function (obj) {
+        table.on('tool(currentTableFilter)', function(obj) {
             var data = obj.data;
             if (obj.event === 'edit') {
                 console.log(data)
-                var content = miniPage.getHrefContent('page/admin/classes-setting/edit.html'+'?id='+data.id);
+                var content = miniPage.getHrefContent('page/admin/classes-setting/edit.html' + '?id=' + data.id);
                 var openWH = miniPage.getOpenWidthHeight();
 
                 var index = layer.open({
                     title: '编辑用户',
                     type: 1,
                     shade: 0.2,
-                    maxmin:true,
+                    maxmin: true,
                     shadeClose: true,
                     area: [openWH[0] + 'px', openWH[1] + 'px'],
                     offset: [openWH[2] + 'px', openWH[3] + 'px'],
                     content: content,
                 });
-                $(window).on("resize", function () {
+                $(window).on("resize", function() {
                     layer.full(index);
                 });
                 return false;
             } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
+                layer.confirm('真的删除行么', function(index) {
                     console.log(data)
                     jq1111.ajax({
                         type: "POST",
-                        crossDomain:true,
+                        crossDomain: true,
                         url: "http://localhost:5000/api/School/RemoveClass",
                         contentType: "application/json",
-                        dataType:"json",
-                        data:JSON.stringify({
-                            "majorId":data.grade.id,
-                            "classId":data.id
+                        dataType: "json",
+                        data: JSON.stringify({
+                            "majorId": data.grade.id,
+                            "classId": data.id
                         }),
                         xhrFields: {
                             withCredentials: true
                         },
-                        success:function (message) {
+                        success: function(message) {
                             console.log(message)
                             obj.del();
                             layer.msg(message.msg);
                         },
-                        error:function (message) {
+                        error: function(message) {
                             console.log(message.responseJSON);
-                            layer.msg('失败:'+message.responseJSON.msg);
+                            layer.msg('失败:' + message.responseJSON.msg);
                         },
                     });
                     layer.close(index);
@@ -333,23 +356,23 @@
             }
         });
 
-        function deleteClass(classId){
+        function deleteClass(classId) {
             jq1111.ajax({
                 type: "POST",
-                crossDomain:true,
+                crossDomain: true,
                 url: "http://localhost:5000/api/School/RemoveClass",
                 contentType: "application/json",
-                dataType:"json",
-                data:JSON.stringify({
-                    "classId":classId
+                dataType: "json",
+                data: JSON.stringify({
+                    "classId": classId
                 }),
                 xhrFields: {
                     withCredentials: true
                 },
-                success:function (message) {
+                success: function(message) {
                     return true;
                 },
-                error:function (message) {
+                error: function(message) {
                     console.log(message.responseJSON);
                     return false;
                 },

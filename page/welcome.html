@@ -1,6 +1,6 @@
 <!-- bootstrap引入 -->
 <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<script src = "https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js" ></script>
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- 样式添加 -->
 <style>
@@ -12,7 +12,7 @@
         justify-content: center;
         margin: 0 auto;
     }
-
+    
     .box:hover {
         box-shadow: 0 8px 8px rgba(10, 16, 20, .24), 0 0 8px rgba(10, 16, 20, .12);
         text-decoration: none;
@@ -20,7 +20,7 @@
         border: 0;
         transform: translateY(-5px);
     }
-
+    
     .text_hidden {
         height: 3.8rem;
         overflow: hidden;
@@ -30,16 +30,16 @@
         -webkit-box-orient: vertical;
         text-align: center;
     }
-
+    
     .photo_hight {
         position: relative;
         height: 25rem;
     }
-
+    
     .photo_hight a {
         color: #000;
     }
-
+    
     .recommend {
         color: red;
         position: absolute;
@@ -47,16 +47,16 @@
         top: 0rem;
         right: 0rem;
     }
-
+    
     .photo_hidden {
         width: 100%;
         height: 15.5rem;
     }
-
+    
     .photo_hidden img {
         height: 15.5rem;
     }
-
+    
     .under {
         width: 100%;
         margin-top: 2rem;
@@ -66,7 +66,7 @@
         background-repeat: no-repeat;
         background-position: 40% 45%;
     }
-
+    
     .under_main {
         display: flex;
         height: 30rem;
@@ -74,7 +74,7 @@
         overflow: hidden;
         justify-content: space-between;
     }
-
+    
     .under_main ul {
         display: flex;
         justify-content: space-between;
@@ -83,7 +83,7 @@
         margin-top: 6rem;
         padding: 0px;
     }
-
+    
     .under_main ul li {
         height: 1.6rem;
         line-height: 1.6rem;
@@ -92,22 +92,22 @@
         font-size: 1.6rem;
         overflow: hidden;
     }
-
+    
     .under_logo {
         height: 18rem;
         margin-top: 6rem;
     }
-
+    
     .under_main ul li a {
         text-decoration: none;
         color: white;
     }
-
+    
     .under_logo img {
         padding-bottom: 1rem;
         border-bottom: solid 1px white;
     }
-
+    
     .under_logo p {
         margin: 0px;
         height: 4rem;
@@ -115,6 +115,14 @@
         color: white;
         line-height: 2rem;
         font-size: 1.38rem;
+    }
+    
+    .carousel_height {
+        height: 35vw;
+    }
+    
+    .carousel_height img {
+        width: 100vw;
     }
 </style>
 <div class="welcome">
@@ -135,7 +143,7 @@
 
         </ol>
         <!-- 轮播（Carousel）项目 -->
-        <div class="carousel-inner" id="carousel-img">
+        <div class="carousel-inner carousel_height" id="carousel-img">
 
         </div>
         <!-- 轮播（Carousel）导航 -->
@@ -210,7 +218,7 @@
     <!-- 版权声明 end -->
 </div>
 <script>
-    function qq (message) {
+    function qq(message) {
         console.log(message);
         carouselData = message.data;
         var i = 0;
@@ -218,7 +226,7 @@
             if (i === 0) {
                 jq1111('#carousel-indicator').append('<li data-target="#myCarousel" data-slide-to="0" class="active"></li>');
                 console.log(carouselData[0].fileName)
-                jq1111('#carousel-img').append('<div class="item  active"><img src="'+'http://localhost:5000/CarouselImages/' + carouselData[0].fileName + '"</div>');
+                jq1111('#carousel-img').append('<div class="item  active"><img src="' + 'http://localhost:5000/CarouselImages/' + carouselData[0].fileName + '"</div>');
             } else {
                 jq1111('#carousel-indicator').append(
                     '<li data-target="#myCarousel" data-slide-to="' +
@@ -243,7 +251,7 @@
         xhrFields: {
             withCredentials: true
         },
-        error: function (message) {
+        error: function(message) {
             console.log(message.responseJSON);
             // layer.msg('失败:'+message.responseJSON.msg);
         },
@@ -262,35 +270,34 @@
         xhrFields: {
             withCredentials: true
         },
-        success: function (message) {
+        success: function(message) {
             console.log(message);
-            HRData=message.data;
+            HRData = message.data;
             var selecter;
-            for (i=0;i<8;i++){
-                if(i<4){
-                    selecter=jq1111('#album-row-1')
-                }
-                else {
-                    selecter=jq1111('#album-row-2')
+            for (i = 0; i < 8; i++) {
+                if (i < 4) {
+                    selecter = jq1111('#album-row-1')
+                } else {
+                    selecter = jq1111('#album-row-2')
                 }
                 //获取相册信息
                 var albumData;
                 jq1111.ajax({
                     type: "GET",
                     crossDomain: true,
-                    url: "http://localhost:5000/api/PersonalAlbum/"+HRData[i].albumId,
+                    url: "http://localhost:5000/api/PersonalAlbum/" + HRData[i].albumId,
                     contentType: "application/json",
                     dataType: "json",
                     async: false,
                     xhrFields: {
                         withCredentials: true
                     },
-                    error: function (message) {
+                    error: function(message) {
                         console.log(message.responseJSON);
                         // layer.msg('失败:'+message.responseJSON.msg);
                     },
-                    success: function (message) {
-                        albumData=message.data;
+                    success: function(message) {
+                        albumData = message.data;
                     },
                 });
 
@@ -299,41 +306,38 @@
                 jq1111.ajax({
                     type: "GET",
                     crossDomain: true,
-                    url: "http://localhost:5000/api/Album/"+HRData[i].albumId+"/resources",
+                    url: "http://localhost:5000/api/Album/" + HRData[i].albumId + "/resources",
                     contentType: "application/json",
                     dataType: "json",
                     async: false,
                     xhrFields: {
                         withCredentials: true
                     },
-                    error: function (message) {
+                    error: function(message) {
                         console.log(message.responseJSON);
                         // layer.msg('失败:'+message.responseJSON.msg);
                     },
-                    success: function (message) {
-                        albumResData=message.data;
+                    success: function(message) {
+                        albumResData = message.data;
                     },
                 });
 
 
                 selecter.append('<div class=" col-md-3 box col-xs-6 photo_hight">\n' +
-                    '                <a href="page/new-show.html?albumId='+HRData[i].albumId+'">\n' +
+                    '                <a href="page/new-show.html?albumId=' + HRData[i].albumId + '">\n' +
                     '                    <div class="photo_hidden"><img\n' +
-                    '                            src="http://localhost:5000/api/resource/'+albumResData[0].resourceId+'"\n' +
+                    '                            src="http://localhost:5000/api/resource/' + albumResData[0].resourceId + '"\n' +
                     '                            alt=" " class="img-responsive center-block"></div>\n' +
-                    '                    <h4 style="text-align: center;"><strong>'+albumData.title+'</strong></h4>\n' +
-                    '                    <p class="text_hidden">'+albumData.description+'</p>\n' +
+                    '                    <h4 style="text-align: center;"><strong>' + albumData.title + '</strong></h4>\n' +
+                    '                    <p class="text_hidden">' + albumData.description + '</p>\n' +
                     '                    <span class="layui-badge-rim recommend layui-bg-blue">Hot</span>\n' +
                     '                </a>\n' +
                     '            </div>')
             }
         },
-        error: function (message) {
+        error: function(message) {
             console.log(message.responseJSON);
             // layer.msg('失败:'+message.responseJSON.msg);
         },
     });
-
-
-
-    </script>
+</script>

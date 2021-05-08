@@ -52,7 +52,11 @@
                 },
                 dataType: 'json',
                 contentType: 'application/json',
-                success: form.render()//这里是要调用父页面的渲染方法 目前吊用不了
+                success: function () {
+                    tablerender();
+                    layer.closeAll();
+
+                }//这里是要调用父页面的渲染方法
             });
             console.log(JSON.stringify(data.field));
             /*

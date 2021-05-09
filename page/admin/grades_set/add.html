@@ -1,5 +1,5 @@
-<div class="layuimini-main">
-    <div class="layui-form layuimini-form">
+<div class="layuimini-container">
+    <div class="layuimini-main">
         <!-- 年级添加头部 -->
         <div class="head">
             <h2><strong>年级相册信息管理</strong></h2>
@@ -8,23 +8,26 @@
         <div>
             <hr class="layui-border-black">
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label required">年级</label>
-            <div class="layui-input-block">
-                <select name="grade" lay-verify="" id="grade-select">
+        <div class="layui-form layuimini-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label required">年级</label>
+                <div class="layui-input-block">
+                    <select name="grade" lay-verify="" id="grade-select">
                     <option value="">请选择一个年级</option>
                 </select>
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 <script>
-    layui.use(['form', 'table'], function() {
+    layui.use(['form', 'table', ], function() {
         var form = layui.form,
             layer = layui.layer,
             table = layui.table,
@@ -71,13 +74,13 @@
         form.on('submit(saveBtn)', function(data) {
             console.log(data)
             var postData = {
-                "grade": data.field.grade,
+                "gradeId": data.field.grade,
             }
             console.log(postData)
             jq1111.ajax({
                 type: "POST",
                 crossDomain: true,
-                url: "http://localhost:5000/api/School/AddGrade",
+                url: "http://localhost:5000/api/School/AddClass",
                 contentType: "application/json",
                 dataType: "json",
                 xhrFields: {

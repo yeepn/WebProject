@@ -22,6 +22,15 @@
                 <textarea name="describe" autocomplete="off" placeholder="请输入资源简介" class="layui-input"></textarea>
             </div>
         </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">资源标签</label>
+            <div class="layui-input-block">
+                <select name="city" lay-verify="" lay-search id="tag-select">
+                </select>
+            </div>
+        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">是否公开</label>
             <div class="layui-input-block">
@@ -111,6 +120,32 @@
             });
 
             return false;
+        });
+
+        //获取所有TAG
+        var tagData;
+        jq1111.ajax({
+            type: "GET",
+            crossDomain: true,
+            url: "http://localhost:5000/api/ResourceTag/",
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function (message) {
+                console.log(message);
+                tagData=message.data;
+                tagData.forEach(function (tag) {
+                    jq1111("#tag-select").append(
+                        '<option value="'+tag.id+'">'+tag.name+'</option>'
+                    )
+                })
+            },
+            error: function (message) {
+                console.log(message.responseJSON);
+            },
         });
 
     });

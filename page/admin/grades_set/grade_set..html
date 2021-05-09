@@ -37,9 +37,10 @@
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table;
+        miniPage = layui.miniPage;
         table.render({
             elem: '#currentTableId',
-            url: 'api/grade_set.json',
+            url: 'http://localhost:5000/api/School/Grades',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -55,16 +56,8 @@
                     width: 80,
                     title: '年级名'
                 }, {
-                    field: 'people_count',
-                    title: '总人数',
-                    minWidth: 100
-                }, {
-                    field: 'photo_count',
-                    title: '相册数',
-                    minWidth: 100
-                }, {
                     title: '操作',
-                    minWidth: 100,
+                    minWidth: 80,
                     toolbar: '#currentTableBar',
                     align: "center"
                 }]
@@ -100,14 +93,17 @@
          */
         table.on('toolbar(currentTableFilter)', function(obj) {
             if (obj.event === 'add') { // 监听添加操作
+                var content = miniPage.getHrefContent('page/admin/grades_set/add.html');
+                var openWH = miniPage.getOpenWidthHeight();
                 var index = layer.open({
                     title: '添加用户',
                     type: 2,
                     shade: 0.2,
                     maxmin: true,
                     shadeClose: true,
-                    area: ['100%', '100%'],
-                    content: 'page/admin/grades_set/add.html',
+                    area: [openWH[0] + 'px', openWH[1] + 'px'],
+                    offset: [openWH[2] + 'px', openWH[3] + 'px'],
+                    content: content,
                 });
                 $(window).on("resize", function() {
                     layer.full(index);
@@ -115,7 +111,23 @@
             } else if (obj.event === 'delete') { // 监听删除操作
                 var checkStatus = table.checkStatus('currentTableId'),
                     data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
+                if (data.length === 0) {
+                    layer.alert('未选择要删除的数据', {
+                        title: '操作不合法'
+                    })
+                    return;
+                }
+                var deletedItemCount = 0;
+                data.forEach(function(deleteData) {
+                    if (deleteGrade(deleteData.id)) {
+                        deletedItemCount++;
+                    }
+                });
+                layer.alert('成功删除' + deletedItemCount + '个数据,' + (data.length - deletedItemCount) + '条删除失败，如果存在删除失败，请尝试刷新界面重试', {
+                    title: '操作结果'
+                });
+                table.reload('currentTableId', {}, 'data');
+                console.log(data)
             }
         });
 
@@ -143,7 +155,30 @@
                 return false;
             } else if (obj.event === 'delete') {
                 layer.confirm('真的删除行么', function(index) {
-                    obj.del();
+                    console.log(data)
+                    jq111.ajax({
+                        type: "POST",
+                        crossDomain: true,
+                        url: "http://localhost:5000/api/School/RemoveGrade",
+                        contentType: "application/json",
+                        dataType: "json",
+                        data: JSON.stringify({
+                            "gradeId": data.id
+                        }),
+                        xhrFields: {
+                            widthCredentials: true
+                        },
+                        success: function(message) {
+                            console.log(message)
+                            obj.del();
+                            layer.msg(message.msg)
+                        },
+                        error: function(message) {
+                            console.log(message.responseJSON);
+                            lay.msg('失败:' + message.responseJSON.msg);
+                        },
+
+                    });
                     layer.close(index);
                 });
             }

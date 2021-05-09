@@ -2,16 +2,16 @@
     <div class="layuimini-main">
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>
+                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 创建相册 </button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除所选相册 </button>
             </div>
         </script>
         <table class="layui-hide" id="currentTableId2" lay-filter="currentTableFilter2"></table>
 
         <script type="text/html" id="currentTableBar2">
             <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit2">编辑</a>
-            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-setting" lay-event="setting2">设置</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete2">删除</a>
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-upload" lay-event="upload">上传资源</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="preview">查看</a>
         </script>
 
     </div>
@@ -26,7 +26,7 @@
 
         table.render({
             elem: '#currentTableId2',
-            url: 'api/gallerytable.json',
+            url: 'http://localhost:5000/api/SchoolAlbum/',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -35,19 +35,45 @@
             }],
             cols: [[
                 {type: "checkbox", width: 50},
+                {title: '操作', width: 220, toolbar: '#currentTableBar2', align: "center"},
                 {field: 'id', width: 80, title: 'ID', sort: true},
-                {field: 'name', width: 80, title: '标题', sort: true},
-                {field: 'detail', width: 280, title: '描述'},
-                {field: 'singns', title: '标签', minWidth: 150},
-                {field: 'albums', title: '相册数', minWidth: 150},
-                {field: 'views', width: 135, title: '点击量', sort: true},
-                {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+                {field: 'title', width: 120, title: '标题', sort: true},
+                {field: 'description', width: 280, title: '描述'},
+                {field: 'isPublic', width: 120, title: '是否公开'},
+                // {field: 'singns', title: '标签', minWidth: 150},
+                // {field: 'albums', title: '相册数', minWidth: 150},
+                // {field: 'views', width: 135, title: '点击量', sort: true}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 15,
             page: true,
             skin: 'line'
         });
+
+        //相册删除函数
+        function deleteAlbum(albumId){
+            jq1111.ajax({
+                type: "POST",
+                crossDomain:true,
+                async:false,
+                url: "http://localhost:5000/api/SchoolAlbum/"+albumId+"/Delete",
+                contentType: "application/json",
+                dataType:"json",
+                data:JSON.stringify({
+
+                }),
+                xhrFields: {
+                    withCredentials: true
+                },
+                success:function (message) {
+                    return true;
+                },
+                error:function (message) {
+                    console.log(message.responseJSON);
+                    return false;
+                },
+            });
+        }
 
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
@@ -74,11 +100,11 @@
          */
         table.on('toolbar(currentTableFilter2)', function (obj) {
             if (obj.event === 'add') {   // 监听添加操作
-                var content = miniPage.getHrefContent('page/admin/student-manage/add.html');
+                var content = miniPage.getHrefContent('page/admin/school-album-manage/add.html');
                 var openWH = miniPage.getOpenWidthHeight();
 
                 var index = layer.open({
-                    title: '添加用户',
+                    title: '创建相册',
                     type: 1,
                     shade: 0.2,
                     maxmin:true,
@@ -90,27 +116,27 @@
                 $(window).on("resize", function () {
                     layer.full(index);
                 });
-            } else if (obj.event === 'delete2') {  // 监听删除操作
-                var checkStatus = table.checkStatus('currentTableId')
+            } else if(obj.event === 'delete'){ // 设置删除操作
+                var checkStatus = table.checkStatus('currentTableId2')
                     , data = checkStatus.data;
-                layer.alert(JSON.stringify(data));
-            }else if(obj.event === 'setting2'){ // 设置删除操作
-                var content = miniPage.getHrefContent('page/admin/classes-setting/setting.html');
-                var openWH = miniPage.getOpenWidthHeight();
-
-                var index = layer.open({
-                    title: '班级设置',
-                    type: 1,
-                    shade: 0.2,
-                    maxmin:true,
-                    shadeClose: true,
-                    area: [openWH[0] + 'px', openWH[1] + 'px'],
-                    offset: [openWH[2] + 'px', openWH[3] + 'px'],
-                    content: content,
+                if(data.length===0){
+                    layer.alert('未选择要删除的数据', {
+                        title: '操作不合法'
+                    });
+                    return ;
+                }
+                var deletedItemCount=0;
+                data.forEach(function (deleteData){
+                    if(deleteAlbum(deleteData.id)){
+                        deletedItemCount++;
+                    }
                 });
-                $(window).on("resize", function () {
-                    layer.full(index);
+                //TODO 有计数bug，全部显示失败实际成功
+                layer.alert('成功删除'+deletedItemCount+'个数据,'+(data.length-deletedItemCount)+'条删除失败，如果存在删除失败，请尝试刷新界面重试', {
+                    title: '操作结果'
                 });
+                table.reload('currentTableId',{}, 'data');
+                console.log(data)
             }
         });
 
@@ -121,13 +147,15 @@
 
         table.on('tool(currentTableFilter2)', function (obj) {
             var data = obj.data;
+            //编辑相册
             if (obj.event === 'edit2') {
-
-                var content = miniPage.getHrefContent('page/admin/classes-setting/edit.html');
+                var content = miniPage.getHrefContent('page/student-gallery-manage/edit.html');
                 var openWH = miniPage.getOpenWidthHeight();
+                //TODO 需要一个更好的传参方法，先这样用着吧
+                localStorage.setItem('selectedAlbumId',data.id);
 
                 var index = layer.open({
-                    title: '编辑用户',
+                    title: '编辑相册',
                     type: 1,
                     shade: 0.2,
                     maxmin:true,
@@ -140,11 +168,28 @@
                     layer.full(index);
                 });
                 return false;
-            } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del();
-                    layer.close(index);
+            } else if (obj.event === 'upload') {
+                var content = miniPage.getHrefContent('page/student-gallery-manage/upload.html');
+                var openWH = miniPage.getOpenWidthHeight();
+                //TODO 需要一个更好的传参方法，先这样用着吧
+                localStorage.setItem('selectedAlbumId',data.id);
+
+                var index = layer.open({
+                    title: '上传资源',
+                    type: 1,
+                    shade: 0.2,
+                    maxmin:true,
+                    shadeClose: true,
+                    area: [openWH[0] + 'px', openWH[1] + 'px'],
+                    offset: [openWH[2] + 'px', openWH[3] + 'px'],
+                    content: content,
                 });
+                $(window).on("resize", function () {
+                    layer.full(index);
+                });
+                return false;
+            }else if(obj.event === 'preview'){ // 设置删除操作
+                window.location = 'page/new-show.html?albumId='+data.id;
             }
         });
 
